@@ -43,6 +43,61 @@ a {
 .main_img img {
   width: 100%;
 }
+
+.text-secondary {
+  background-color: #faf1e3;
+}
+
+.text-secondary p {
+  margin-left: 6rem;
+  margin-bottom: 0;
+  color: black;
+  font-family: 'noto';
+}
+
+.etc_div {
+  margin-left: 6rem;
+}
+
+.etc_div a {
+  margin-right: 2rem;
+}
+
+.table-responsive {
+  margin-left: 12rem;
+  margin-top: 16rem;
+  width: 80%;
+}
+
+.table {
+  table-layout: fixed;
+}
+
+.table td {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.stitle {
+  font-weight: bold; 
+  font-size: 2rem;
+  font-family: 'noto';
+}
+
+/* 베스트 룸 영역 */
+.main_room {
+  margin-left: 12rem;
+  margin-top: 20rem;
+  overflow-x: auto;
+}
+
+.main_room_list {
+  float: left;
+}
+
+.main_room img {
+  border-radius: 2rem;
+}
 /*
 .menu_list li {
   position: relative;

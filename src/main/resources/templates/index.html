@@ -36,7 +36,7 @@
 
     <div th:replace="fragments/common :: fragment-mainimg"></div>
 
-    <main role="main" class="container">
+    <!--<main role="main" class="container">
 
         <div class="starter-template">
             <h1>Spring Boot Tutorial</h1>
@@ -44,7 +44,39 @@
                 Spring Security, JPA를 이용해 보안 설정과 데이터 다루기</p>
         </div>
 
-    </main><!-- /.container -->
+    </main> /.container -->
+
+    <!-- 상품 테이블 -->
+    <div th:replace="fragments/common :: fragment-table"></div>
+
+    <!-- 인기사진 -->
+    <div class="main_room">
+        <p class="stitle" style="margin-top: 5rem;">오늘의 인기사진</p>
+        <br>
+        <div class="main_room_list" >
+            <div>
+                <a href="#"><img src="image/best1.PNG" style="width: 54rem; height: 26rem"></a>
+            </div>
+        </div>
+        <div class="main_room_list">
+            <div>
+                <a href="#"><img src="image/best2.webp" style="width: 40rem; height: 54rem; margin-left: 56rem; position: relative; top: -26rem;"></a>
+            </div>
+        </div>
+        <div class="main_room_list">
+            <div>
+                <a href="#"><img src="image/best3.webp" style="width: 26rem; height: 26rem; position: relative; top: -52rem; left: 0;"></a>
+            </div>
+        </div>
+        <div class="main_room_list">
+            <div>
+                <a href="#"><img src="image/best4.webp" style="width: 26rem; height: 26rem; position: relative; top: -52rem; left: 2rem;"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer">

@@ -14,8 +14,8 @@
     <title th:text="${title}">House Project</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-white bg-white fixed-top" th:fragment="menu(menu)">
-            <a href="#"><img src="image/homelog.jpg" class="logo"></a>
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top" th:fragment="menu(menu)">
+            <a href="#" class="navbar-brand"><img src="image/homelog.jpg" class="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto nav_ul">
                     <li class="nav-item" th:classappend="${menu} == 'home'? 'active'">
-                        <a class="nav-link" href="#" th:href="@{/}">소개 <span class="sr-only" th:if="${menu} == 'home'">(current)</span></a>
+                        <a class="nav-link" href="#" th:href="@{/board/intro}">소개 <span class="sr-only" th:if="${menu} == 'home'">(current)</span></a>
                     </li>
                     <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/board/list}">집들이 <span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
@@ -68,6 +68,59 @@
             </div>
         </div>
         
+        <!-- 상품 테이블 -->
+        <div class="table-responsive" th:fragment="fragment-table">
+            <table class="table table-hover" >
+                <thead>
+                    <tr>
+                        <td class="stitle">오늘의 딜</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <img src="image/">
+                        </td>
+                        <td>
+                            <a href="#">
+                                <p class="store">플랜룩스</p>
+                                <P>LED 와이어전구 커튼조명 300구</P>
+                                <div class="name">41%</div>
+                                <div class="store_price">12,500</div>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 하단 영역 -->
+        <div class="text-secondary px-4 py-5 text-left" th:fragment="fragment-bottom">
+            <p style="font-size: 12px; margin-top: 30px;">고객센터 ></p>
+                <p style="font-size: 30px; font-weight:bold;">1234-1234</p>
+                <p>
+                    평일 10:00~16:00(주말 & 공휴일 제외)
+                </p>
+                <div class="etc_div">
+                    <a href="#">브랜드 스토리</a>
+                    <a href="#">회사소개</a>
+                    <a href="#">공지사항</a>
+                    <a href="#">고객센터</a>
+                    <a href="#">제휴/광고 문의</a>
+                    <a href="#">입점신청 문의</a>
+                </div>
+                <br>
+                <p style="margin-top: 10px;">
+                    상호명: (주)버킷플레이스 
+                </p>
+                <p>
+                    제작자: 이지은
+                </p>
+                <p>
+                    소속: 공주대학교 컴퓨터공학부
+                </p>
+        </div>
+
         <!-- jQuery, Popper.js, and Bootstrap JS -->
         <footer th:fragment="footer">
             <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
