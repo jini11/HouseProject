@@ -50,7 +50,7 @@
                 </ul>
                 
                 <a class="btn btn-light btn-lg my-2 mr-2 my-sm-0 nav_btn" th:href="@{/account/login}"
-                    sec:authorize="!isAuthenticated()">로그인</a>
+                    sec:authorize="!isAuthenticated()" href="../account/login.html">로그인</a>
                 <a class="btn btn-light btn-lg my-2 my-sm-0 nav_btn" th:href="@{/account/register}"
                     sec:authorize="!isAuthenticated()">회원가입</a>
                 <!--<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
