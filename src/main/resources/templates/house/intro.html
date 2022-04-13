@@ -1,0 +1,87 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('House Project')"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="starter-template.css" rel="stylesheet">
+
+    <title>House Project</title>
+</head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('intro')">
+        
+    </nav>
+
+    <div th:replace="fragments/common :: fragment-mainimg"></div>
+
+    <div class="intro_main">
+        <p>" 오늘의집은 인테리어의 모든 과정을 도와줄 수 있는 원스톱 인테리어 플랫폼입니다.</p>
+        <p>&nbsp; 이를 통해 누구나 쉽고 재미있게 자신의 공간을 만들어가는 문화가 널리 퍼지기를 꿈꿉니다. "</p>
+    </div>
+
+    <div class="intro_table2">
+            <table>
+                <tr>
+                    <img th:src="@{/image/room/room1.webp}"> 
+                    <img th:src="@{/image/room/room2.webp}"> 
+                    <img th:src="@{/image/room/room3.webp}">
+                    <img th:src="@{/image/room/room4.webp}">  
+                    <img th:src="@{/image/room/room5.webp}"> 
+                    <img th:src="@{/image/room/room6.webp}" style="height: 16%; margin-right: -50%;"> 
+                </tr>
+            </table>
+    </div>
+
+
+    <div class="intro_exp">
+        <div class="exp_txt">
+            <p>오늘의집은 </p>
+            <p>인테리어의 모든 과정을</p>
+            <p>한 곳에서 해결할 수 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="intro_table">
+        <table style="margin-left: 14%;">
+            <tr>
+                <td>
+                    <img th:src="@{/image/intro1.webp}">
+                    <p>인테리어 정보 한번에 모아보기</p>
+                </td>
+                <td>
+                    <img th:src="@{/image/intro2.webp}">
+                    <p>마음에 드는 인테리어 사진 속 제품 바로 구매하기</p>
+                </td>
+                <td>
+                    <img th:src="@{/image/intro3.webp}">
+                    <p>인테리어 시공 더 쉽게 하기</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" 
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+            crossorigin="anonymous"></script>
+    </footer>
+</body>
+
+</html>
