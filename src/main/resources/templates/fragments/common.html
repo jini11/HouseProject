@@ -30,7 +30,7 @@
                         <a class="nav-link" href="#" th:href="@{/house/visit}">집들이 <span class="sr-only" th:if="${menu} == 'visit'">(current)</span></a>
                     </li>
                     <li class="nav-item" th:classappend="${menu} == 'store'? 'active'">
-                        <a class="nav-link" href="#" th:href="@{/sell/store}">스토어 <span class="sr-only" th:if="${menu} == 'store'">(current)</span></a>
+                        <a class="nav-link" href="#" th:href="@{/product/store}">스토어 <span class="sr-only" th:if="${menu} == 'store'">(current)</span></a>
                     </li>
                     <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/board/list}">공지사항 <span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
@@ -64,7 +64,7 @@
         <!-- 메인 이미지 화면 -->
         <div class="main_img" th:fragment="fragment-mainimg">
             <div>
-                <img th:src="@{/image/main.PNG}" class="img-fluid"></a></li>
+                <img th:src="@{/image/main.PNG}" class="img-fluid"></li>
             </div>
         </div>
         
