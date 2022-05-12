@@ -18,18 +18,18 @@ a {
 }
 
 .logo {
-  width: 11rem;
-  margin-left: 10rem;
-  margin-right: 12rem;
+  width: 80%; /* 11rem */
+  margin-left: 40%;
+  margin-right: 15%;
   float: left;
 }
 
 .nav_ul a {
   margin-left: 4rem;
-  width: 8rem;
+  width: 6rem; /* 8rem */
   float: left;
   color: black;
-  font-size: 1.4rem;
+  font-size: 130%; /* 1.4rem */
   font-weight: bold;
 }
 
@@ -102,7 +102,7 @@ a {
   width: 60%;
   margin-top: 15rem;
   margin-bottom: 15rem;
-  margin-left: 30rem;
+  margin-left: 23%;
   font-size: 150%;
   font-weight: bold;
 }
