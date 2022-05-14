@@ -15,28 +15,29 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin" th:action="@{/account/login}" method="post">
+    <form class="form-signin" th:action="@{/account/register}" method="post">
         
         <h1 class="h3 mb-3 font-weight-bold">회원가입</h1>
         <label for="userid" class="sr-only">아이디</label>
         <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus>
         <label for="inputPassword" class="sr-only">비밀번호</label>
         <input type="text" id="inputPassword" name="password" class="form-control" placeholder="비밀번호" required>
-        <label for="inputPassword" class="sr-only">비밀번호 확인</label>
+        <!--<label for="inputPassword" class="sr-only">비밀번호 확인</label>
         <input type="text" id="inputPassword" name="password" class="form-control" placeholder="비밀번호 확인" required>
+        -->
         <label for="inputName" class="sr-only">이름</label>
         <input type="text" id="inputName" name="username" class="form-control" placeholder="이름" required>
-        <label for="inputBitrh" class="sr-only">생년월일</label>
-        <input type="text" id="inputBitrh" name="birth" class="form-control" placeholder="생년월일" required>
+        <!--<label for="inputBitrh" class="sr-only">생년월일</label>
+        <input type="text" id="inputBitrh" name="birth" class="form-control" placeholder="생년월일" required>-->
         <label for="inputEmail" class="sr-only">이메일</label>
         <input type="text" id="inputEmail" name="email" class="form-control" placeholder="이메일" required>
 
         <button class="btn" type="submit">회원가입</button>
         <div class="caption">
 			<a href="../index.html" th:href="@{/}">홈으로&nbsp; |</a>
-			<a href="signup.html" th:href="@{/account/login/}">&nbsp;로그인 |</a>
-			<a href="findID.html">&nbsp;아이디 찾기 |</a>
-			<a href="findPW.html">&nbsp;비밀번호 찾기</a>
+			<a href="signup.html" th:href="@{/account/login}">&nbsp;로그인</a>
+			<!--<a href="findID.html">&nbsp;아이디 찾기 |</a>
+			<a href="findPW.html">&nbsp;비밀번호 찾기</a>-->
 		</div>
       </form>
 

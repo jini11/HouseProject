@@ -53,11 +53,12 @@
                     sec:authorize="!isAuthenticated()" href="../account/login.html">로그인</a>
                 <a class="btn btn-light btn-lg my-2 my-sm-0 nav_btn" th:href="@{/account/register}"
                     sec:authorize="!isAuthenticated()">회원가입</a>
-                <!--<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
-                    <span class="text-white" sec:authentication="name">사용자</span>
-                    <span class="text-white mx-2" sec:authentication="principal.authorities">권한</span>
-                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">로그아웃</button>
-                </form>-->
+                <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name">사용자</span>
+                    <span>&nbsp; 님 &nbsp;&nbsp;&nbsp;</span>
+                    <!--<span class="mx-2" sec:authentication="principal.authorities">권한</span> -->
+                    <button class="btn btn-secondary mx-6 my-2 my-sm-0" type="submit">로그아웃</button>
+                </form>
             </div>
         </nav>     
 

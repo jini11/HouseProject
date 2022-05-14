@@ -2,6 +2,7 @@ package com.mycom.HouseProject.controller;
 
 import com.mycom.HouseProject.model.Board;
 import com.mycom.HouseProject.repository.BoardRepository;
+import com.mycom.HouseProject.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -21,6 +20,9 @@ public class BoardController {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BoardService boardService;
 
     @GetMapping("/list")
     public String list(Model model, @PageableDefault(size = 8) Pageable pageable,
@@ -52,9 +54,7 @@ public class BoardController {
         if(bindingResult.hasErrors()) {
             return "board/form";
         }
-        LocalDate date = LocalDate.now();
-        board.setDate(date);
-        boardRepository.save(board);
+        boardService.save(board);
         return "redirect:/board/list";
     }
 }
