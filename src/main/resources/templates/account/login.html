@@ -34,16 +34,21 @@
         <!--<div th:if="${param.logout}" class="alert alert-primary" role="alert">
             로그아웃하였습니다.
         </div>-->
-        <button class="btn" type="submit">로그인</button>
+        <button class="btn" type="submit" th:onclick="|start()|">로그인</button>
         <div class="caption">
 			<a href="../index.html" th:href="@{/}">홈으로&nbsp; |</a>
 			<a href="signup.html" th:href="@{/account/register}">&nbsp;회원가입</a>
 			<!--<a href="findID.html">&nbsp;아이디 찾기 |</a>
 			<a href="findPW.html">&nbsp;비밀번호 찾기</a> -->
 		</div>
-      </form>
+    </form>
 
     <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function start() {
+            console.log();
+        }        
+    </script> 
 </body>
 
 </html>

@@ -30,19 +30,27 @@
                 <label for="searchText" class="sr-only">검색</label>
                 <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
             </div>
-            <button type="submit" class="btn btn-light mb-2">검색</button>
+            <button type="submit" class="btn btn-secondary mb-2">검색</button>
         </form>
         <table class="table table-striped" style="width: 70%; margin-left: 30%;" >
             <tbody>
                 <tr th:each="board : ${boards}">
                     <td>
-                        <p><a th:text="${board.title}" th:href="@{/board/form(id=${board.id})}">iOS 12.x 버전 업데이터 지원 중단 안내</a></p><br>
-                        <p th:text="${board.date}" class="notice_date">2021.12.06</p>
+                        <a th:href="@{/board/form(id=${board.id})}">
+                            <p th:text="${board.title}" style="font-size: 110%;">iOS 12.x 버전 업데이터 지원 중단 안내</p>&nbsp;&nbsp;&nbsp;
+                            <p th:text="${board.user.userid}" style="font-size: 100%; float:right; padding-right: 5rem; margin-bottom:0;">작성자</p><br>
+                            <p th:text="${board.date}" class="notice_date">2021.12.06</p>
+                        </a>
                     </td>
                 </tr>
             </tbody>
         </table>
         
+        <div class="text-right">
+            <a type="button" class="btn btn-secondary" th:href="@{/board/form}" 
+                sec:authorize="hasRole('ROLE_ADMIN')">쓰기</a>
+        </div>
+
         <nav aria-label="Page navigation example" style="margin-left: 25%; margin-top: 5%;">
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
@@ -61,9 +69,6 @@
             </ul>
         </nav>
         
-        <div class="text-right">
-            <a type="button" class="btn btn-secondary" th:href="@{/board/form}">쓰기</a>
-        </div>
     </div>
 
     <br><br><br><br>

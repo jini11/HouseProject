@@ -1,8 +1,11 @@
 @charset "UTF-8";
 @font-face {
-    src: url("../font/NotoSansKR-Medium.otf");
-    font-family: "noto"
-}
+    font-family: "noto";
+    src: url("../font/NotoSansKR-Medium.woff") format("font-woff"),
+        url("../font/NotoSansKR-Medium.woff2") format("font-woff2");
+    font-weight: bold;
+    font-style: normal;
+  }
 
 /*___________________________________________________________________
    [ 메인화면 ]
