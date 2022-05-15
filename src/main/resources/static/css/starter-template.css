@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @font-face {
   font-family: "noto";
-  src: url("../font/NotoSansKR-Medium.woff") format("font-woff"),
+  src: url("../font/NotoSansKR-Medium.woff") format("font-woff"), /* 폰트오류해결 => woff -> font-woff로 */
       url("../font/NotoSansKR-Medium.woff2") format("font-woff2");
   font-weight: bold;
   font-style: normal;
@@ -19,6 +19,10 @@ a {
   text-decoration: none;
   font-family: 'noto';
   color: black;
+}
+
+p {
+  font-family: 'noto';
 }
 
 .logo {
@@ -337,4 +341,55 @@ a {
   font-size: 80%; 
   padding-right: 45%;
   margin-left: 22%;
+}
+
+/* 마이페이지 메인 */
+.user_info {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+  margin-left: 19rem;
+  border: 1px solid black;
+  width: 70%;
+  float: left;
+}
+
+.user_info_img {
+  width: 12%;
+  float: left;
+  margin: 2rem 2rem 2rem 2rem;
+}
+
+.user_info p {
+  float: left;
+}
+
+.user_info img {
+  width: 80%;
+}
+
+.info_menu {
+  width: 70%;
+  height: 20rem;
+  border: 1px solid gray;
+  text-align: center;
+  margin-left: 19rem;
+  margin-bottom: 10rem;
+}
+
+.info_menu td {
+  border: 1px solid gray;
+  width: 33%;
+}
+
+.info_menu_title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.info_menu_content {
+  font-size: 14px;
+}
+
+.info_menu img {
+  width: 15%;
 }

@@ -14,7 +14,7 @@
     <title th:text="${title}">House Project</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top" th:fragment="menu(menu)">
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom" th:fragment="menu(menu)">
             <a href="#" th:href="@{/}" class="navbar-brand"><img th:src="@{/image/homelog.jpg}" class="logo"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
                 aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,29 +35,18 @@
                     <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/board/list}">공지사항 <span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdown01">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li> -->
                 </ul>
                 
                 <a class="btn btn-light btn-lg my-2 mr-2 my-sm-0 nav_btn" th:href="@{/account/login}"
                     sec:authorize="!isAuthenticated()" href="../account/login.html">로그인</a>
                 <a class="btn btn-light btn-lg my-2 my-sm-0 nav_btn" th:href="@{/account/register}"
                     sec:authorize="!isAuthenticated()">회원가입</a>
+
                 <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
-                    <span sec:authentication="name">사용자</span>
+                    <span sec:authentication="name" style="font-weight: bold;">사용자</span>
                     <span>&nbsp; 님 &nbsp;&nbsp;&nbsp;</span>
-                    <!--<span class="mx-2" sec:authentication="principal.authorities">권한</span> -->
-                    <button class="btn btn-secondary mx-6 my-2 my-sm-0" type="submit">로그아웃</button>
+                    <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/myshop/index}">마이페이지</a>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" th:href="@{/}">로그아웃</button>
                 </form>
             </div>
         </nav>     
@@ -65,7 +54,7 @@
         <!-- 메인 이미지 화면 -->
         <div class="main_img" th:fragment="fragment-mainimg">
             <div>
-                <img th:src="@{/image/main.PNG}" class="img-fluid"></li>
+                <img th:src="@{/image/main.PNG}" class="img-fluid">
             </div>
         </div>
         
