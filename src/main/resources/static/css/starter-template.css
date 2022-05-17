@@ -393,3 +393,31 @@ p {
 .info_menu img {
   width: 15%;
 }
+
+/* 회원 정보 수정 */
+.info_form {
+  width: 70%;
+  margin: 10rem auto 10rem 20rem;
+  padding: 4rem 3rem 4rem 3rem;
+  border: 1px solid lightgray;
+}
+
+.info_form th {
+  width: 50%;
+  background-color: #dfdfdf;
+  padding: 11px 0px 10px 18px;
+  vertical-align: top;
+}
+
+.info_form td {
+  line-height: 30px;
+  padding: 8px 10px 7px 20px;
+}
+
+.info_form input {
+  width: 150%;
+}
+
+.info_form a {
+  margin-top: 5rem;
+}

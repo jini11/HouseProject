@@ -35,11 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                     .and()
                 .logout()
-                /*    .logoutSuccessUrl("/")
+                    .logoutSuccessUrl("/")
                     .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID","remember-me")*/
-                    .permitAll();
-                /*    .and()
+                    .deleteCookies("JSESSIONID","remember-me")
+                    .permitAll()
+                    .and()
                 .sessionManagement()
                     .maximumSessions(1)
                     .maxSessionsPreventsLogin(false)
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and() .rememberMe()
                     .alwaysRemember(false)
                     .tokenValiditySeconds(43200)
-                    .rememberMeParameter("remember-me");*/
+                    .rememberMeParameter("remember-me");
 
     }
 

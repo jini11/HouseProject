@@ -27,4 +27,5 @@ public class UserService { // unit test?
         user.getRoles().add(role);
         return userRepository.save(user);
     }
+
 }

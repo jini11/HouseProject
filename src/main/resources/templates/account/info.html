@@ -1,0 +1,64 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('House Project')"> 
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="starter-template.css" rel="stylesheet">
+
+    <title>House Project</title>
+</head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
+    </nav>
+
+    <form class="form-signin info_form" action="#" th:action="@{/account/info}" th:object="${user}" method="post" >
+        <h3 style="font-weight:bold; margin-bottom:4rem;">회원 정보 수정</h3>
+        <table>
+            <tr>
+                <th>아이디</th>
+                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" id="userid" th:field="*{userid}" disabled>
+                    
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td><input id="inputPassword" name="password" class="form-control"></td>
+            </tr>
+            <!--<tr>
+                <th>비밀번호 확인</th>
+                <td><input type="text" id="inputPassword" name="password" class="form-control" required></td>
+            </tr>-->
+            <tr>
+                <th>이름</th>
+                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'" id="username" th:field="*{username}"></td>
+            </tr>
+            <tr>
+                <th>주소</th>
+                <td>
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('useradd1')} ? 'is-invalid'" id="useradd1" th:field="*{useradd1}">
+                    <input type="text" class="form-control" th:classappend="${#fields.hasErrors('useradd2')} ? 'is-invalid'" id="useradd2" th:field="*{useradd2}" placeholder="동, 호수">
+                </td>
+            </tr>
+            <tr>
+                <th>이메일</th>
+                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" id="email" th:field="*{email}"></td>
+            </tr>
+        </table>
+        <button type="submit" class="btn btn-secondary" style="width: 20%;">회원 정보 수정</button>
+        <a class="btn" type="button" style="float:right; text-decoration:underline;">탈퇴하기</a>
+    </form>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"></footer>
+</body>
+
+</html>
