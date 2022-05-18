@@ -20,10 +20,11 @@
 
     <form class="form-signin info_form" action="#" th:action="@{/account/info}" th:object="${user}" method="post" >
         <h3 style="font-weight:bold; margin-bottom:4rem;">회원 정보 수정</h3>
+        <input type="hidden" th:field="*{id}">
         <table>
             <tr>
                 <th>아이디</th>
-                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" id="userid" th:field="*{userid}" disabled>
+                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" id="userid" th:field="*{userid}" disabled readonly>
                     
             </tr>
             <tr>
@@ -50,8 +51,8 @@
                 <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" id="email" th:field="*{email}"></td>
             </tr>
         </table>
-        <button type="submit" class="btn btn-secondary" style="width: 20%;">회원 정보 수정</button>
-        <a class="btn" type="button" style="float:right; text-decoration:underline;">탈퇴하기</a>
+        <button type="submit" class="btn btn-secondary" style="width: 20%;" th:onclick="|updateUser()|">회원 정보 수정</button>
+        <a class="btn" type="button" th:onclick="|deleteUser(*{id})|" style="float:right; text-decoration:underline;">탈퇴하기</a>
     </form>
 
     <!-- 푸터 설명 -->
@@ -59,6 +60,27 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function updateUser() {
+            alert('수정이 완료되었습니다.');
+        }
+
+        function deleteUser(id) {
+            var check = confirm('정말 탈퇴하시겠습니까?');
+            if(check) {
+                $.ajax({
+                    url: '/api/users/' + id,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log('result', result);
+                        alert('탈퇴가 완료되었습니다.');
+                        sessionStorage.clear();
+                        window.location.href = '/logout';
+                    }
+                })
+            } else alert('취소되었습니다.');
+        }
+    </script>
 </body>
 
 </html>

@@ -27,5 +27,14 @@ public class UserService { // unit test?
         user.getRoles().add(role);
         return userRepository.save(user);
     }
-
+    public User save(String userid, User user) {
+        User current = userRepository.findByUserid(userid);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        current.setPassword(encodedPassword);
+        current.setUseradd1(user.getUseradd1());
+        current.setUseradd2(user.getUseradd2());
+        current.setUsername(user.getUsername());
+        current.setEmail(user.getEmail());
+        return userRepository.save(current);
+    }
 }

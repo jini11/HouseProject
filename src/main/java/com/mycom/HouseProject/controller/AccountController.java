@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -56,7 +57,8 @@ public class AccountController {
     public String postInfo(@Valid User user, BindingResult bindingResult, Authentication authentication) {
         if(bindingResult.hasErrors())
             return "account/info";
-        userService.save(user);
+        String userid = authentication.getName();
+        userService.save(userid, user);
         return "redirect:/account/info";
     }
 }
