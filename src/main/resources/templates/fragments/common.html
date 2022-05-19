@@ -45,7 +45,12 @@
                 <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
                     <span sec:authentication="name" style="font-weight: bold;">사용자</span>
                     <span>&nbsp; 님 &nbsp;&nbsp;&nbsp;</span>
-                    <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/myshop/index}">마이페이지</a>
+                    <span sec:authorize="hasRole('ROLE_USER')">
+                        <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/myshop/index}">마이페이지</a>
+                    </span>
+                    <span sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/admin/index}">마이페이지</a>
+                    </span>
                     <button class="btn btn-secondary my-2 my-sm-0" type="submit" th:href="@{/}">로그아웃</button>
                 </form>
             </div>

@@ -347,7 +347,7 @@ p {
 .user_info {
   margin-top: 4rem;
   margin-bottom: 4rem;
-  margin-left: 19rem;
+  margin-left: 18%;
   border: 1px solid black;
   width: 70%;
   float: left;
@@ -372,7 +372,7 @@ p {
   height: 20rem;
   border: 1px solid gray;
   text-align: center;
-  margin-left: 19rem;
+  margin-left: 18%;
   margin-bottom: 10rem;
 }
 
@@ -397,7 +397,7 @@ p {
 /* 회원 정보 수정 */
 .info_form {
   width: 70%;
-  margin: 10rem auto 10rem 20rem;
+  margin: 10rem auto 10rem 18%;
   padding: 4rem 3rem 4rem 3rem;
   border: 1px solid lightgray;
 }
@@ -424,4 +424,18 @@ p {
 
 .info_form button {
   margin-top: 5rem;
+}
+
+/* 관리자 마이페이지 */
+.admin_info {
+  border: 1px solid gray;
+}
+
+.admin_info thead {
+  font-weight: bold;
+}
+
+.admin_info td, tr {
+  border: 1px solid gray;
+  text-align: center;
 }
