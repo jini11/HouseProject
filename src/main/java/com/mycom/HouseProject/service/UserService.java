@@ -27,6 +27,7 @@ public class UserService { // unit test?
         user.getRoles().add(role);
         return userRepository.save(user);
     }
+
     public User save(String userid, User user) {
         User current = userRepository.findByUserid(userid);
         String encodedPassword = passwordEncoder.encode(user.getPassword());

@@ -439,3 +439,12 @@ p {
   border: 1px solid gray;
   text-align: center;
 }
+
+/* 상품 등록 */
+select {
+  width: 50%; 
+  height: 2.5rem; 
+  border-radius: 5px;
+  border: 1px solid lightgray;
+  padding-left: 5px;
+}
