@@ -65,10 +65,11 @@
                 <textarea class="form-control" id="description" name="description" rows="10" 
                     th:classappend="${#fields.hasErrors('description')} ? 'is-invalid'" th:field="*{description}"></textarea>
             </div>
-            <!--<div class="form-group">
-                <label for="img">이미지</label>
-                <input type="file" id="img" name="img">
-            </div>-->
+            <div class="form-group">
+                <label for="imgFile">이미지</label>
+                <input type="file" id="imgFile" name="imgFile">
+                <!--<img th:src="@{${product.getImgPath()}}">-->
+            </div>
             <div class="text-right">
                 <a type="button" class="btn btn-primary" th:href="@{/admin/index}" sec:authorize="hasRole('ROLE_ADMIN')">취소</a>
                 <button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">확인</button>

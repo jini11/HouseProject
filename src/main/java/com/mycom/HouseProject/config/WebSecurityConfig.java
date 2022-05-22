@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 // 보안체크를 하지 않는다는 의미 --> 실제 홈페이지에서는 위험(여기선 테스트를 위해)
                 .authorizeRequests()
-                    .antMatchers("/", "/account/register","/css/**", "/image/**", "/api/**", "/house/**", "/board/**").permitAll() //해당 경로들은 접근 허용
+                    .antMatchers("/", "/account/register","/css/**", "/image/**", "/api/**", "/house/**", "/board/**", "/product/store").permitAll() //해당 경로들은 접근 허용
                     .anyRequest().authenticated() //다른 모든 요청은 인증된 유저만 접근 허용
                     .and()
                 .formLogin()

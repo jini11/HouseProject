@@ -228,47 +228,61 @@ p {
   font-size: 100%;
 }
 
-/* store_main 영역 */
-/*오늘의 딜 영역 */
-.img_sub>ul {
-  position: relative;
-  margin: 0;
-  padding: 0;
+/* store 영역 */
+/*상품 영역 */
+.category_title {
+  margin-top: 5%;
+  margin-left: 17%;
+  font-size: 200%;
+  font-weight: bold;
 }
 
-.img_sub>ul>li{
-  position: relative;
-  font-size: 0;
-}
-
-.img_sub img {
-  object-fit: cover;
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  
-}
-
-.store_table {
-  margin-left: 12rem;
-  margin-top: 10rem;
-  margin-bottom: 10rem;
-  width: 90%;
+.store_div {
+  margin-left: 16%;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  width: 70%;
 }
 
 .deal {
   width: 100%;
+  margin-bottom: 5%;
+  float: left;
 }
 
-.deal td {
-  width: 26%;
-  height: 10%;
+.store_div img {
+  width: 100%;
+  border-radius: 2%;
 }
 
-.deal img {
-  width: 70%;
-  height: 70%;
-  border-radius: 1%;
+.store_div .product_company {
+  font-size: 90%;
+  font-family: 'noto';
+  margin-top: 1%; 
+  color: gray;
+}
+
+.store_div .product_name {
+  font-size: 120%;
+  font-family: 'noto';
+  font-weight: bold;
+  color: black;
+}
+
+.store_div .product_discount {
+  color: red; 
+  float: left; 
+  font-size: 160%; 
+  font-weight: bold; 
+  margin-top: 1%;
+}
+
+.store_div .product_price {
+  font-size: 160%; 
+  font-weight: bold; 
+  padding-left: 8%;
+  margin-bottom: 5%;
+  margin-top: 1%;
 }
 
 .deal img {
@@ -294,53 +308,32 @@ p {
   transform:scale(1.1);
 }
 
-.store_img p {
-  width: 80%;
-}
-
-.store {
-  margin-top: 2rem; 
-  color: gray;
-}
-
-.name {
-  color: red; 
-  float: left; 
-  font-size: 160%; 
-  font-weight: bold; 
-  margin-top: 1%;
-}
-
-.store_price {
-  font-size: 160%; 
-  font-weight: bold; 
-  padding-left: 18%;
-  margin-bottom: 8%;
-  margin-top: 1%;
-}
-
 /* 상품 종류 */
 .menu_table {
-  margin-left: 10rem;
-  margin-top: 5rem;
-  margin-right: 0;
+  width: 70%;
+  margin-left: 16%;
+  margin-top: 3rem;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .menu {
   margin:0;
   padding:0;
+  max-width: 100%;
 }
 
 .menu td {
   width: 12rem;
   margin-right: 6rem;
+
 }
 
-
 .menu_name {
-  font-size: 80%; 
-  padding-right: 45%;
-  margin-left: 22%;
+  font-size: 120%;
+  margin-top: 1%; 
+  font-weight: bold;
+  text-align: center;
 }
 
 /* 마이페이지 메인 */

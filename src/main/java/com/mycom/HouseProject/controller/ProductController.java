@@ -11,10 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/product")
@@ -27,7 +31,9 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping("/store")
-    public String store() {
+    public String store(Model model) {
+        List<Product> products = productRepository.findAll();
+        model.addAttribute("products", products);
         return "product/store";
     }
 
@@ -71,9 +77,9 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid Product product) {
-        productService.save(product);
-        return "redirect:/admin/index";
+    public String postRegister(@Valid Product product, MultipartFile imgFile) throws Exception {
+        productService.save(product, imgFile);
+        return "redirect:/admin/manage";
     }
 
 }

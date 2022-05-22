@@ -26,4 +26,7 @@ public class Product {
     private Long stock;
     private Long discount;
     private String description;
+    private String imgName;
+    private String imgPath;
+
 }
