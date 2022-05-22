@@ -22,7 +22,7 @@
     <div class="container" style="margin-top: 10%; margin-bottom: 10%;">
         <h2>상품 등록</h2><br>
         <form th:action="@{/product/register}" enctype="multipart/form-data" th:object="${product}" method="post">
-            
+            <input type="hidden" th:field="*{id}">
             <div class="form-group">
                 <label for="name">상품 이름</label>
                 <input type="text" class="form-control" id="name" name="name"
@@ -30,11 +30,13 @@
             </div>
             <div class="form-group">
                 <label for="company">회사명</label>
-                <input type="text" class="form-control" id="company" name="company" th:field="*{company}">
+                <input type="text" class="form-control" id="company" name="company" 
+                    th:classappend="${#fields.hasErrors('company')} ? 'is-invalid'" th:field="*{company}">
             </div>
             <div class="form-group">
                 <label for="category">분류</label><br>
-                <select class="form-select" aria-label="Default select example" id="category" name="category" th:value="*{category}">
+                <select class="form-select" aria-label="Default select example" id="category" name="category" 
+                    th:classappend="${#fields.hasErrors('category')} ? 'is-invalid'" th:value="*{category}">
                     <option>선택</option>
                     <option value="1" selected>가구</option>
                     <option value="2">패브릭</option>
@@ -45,19 +47,23 @@
             </div>
             <div class="form-group">
                 <label for="price">가격</label>
-                <input type="text" class="form-control" id="price" name="price" th:field="*{price}">
+                <input type="text" class="form-control" id="price" name="price" 
+                    th:classappend="${#fields.hasErrors('price')} ? 'is-invalid'" th:field="*{price}">
             </div>
             <div class="form-group">
                 <label for="stock">재고</label>
-                <input type="text" class="form-control" id="stock" name="stock" th:field="*{stock}">
+                <input type="text" class="form-control" id="stock" name="stock" 
+                    th:classappend="${#fields.hasErrors('stock')} ? 'is-invalid'" th:field="*{stock}">
             </div>
             <div class="form-group">
                 <label for="discount">할인율</label>
-                <input type="text" class="form-control" id="discount" name="discount" th:field="*{discount}">
+                <input type="text" class="form-control" id="discount" name="discount"
+                    th:classappend="${#fields.hasErrors('discount')} ? 'is-invalid'" th:field="*{discount}">
             </div>
             <div class="form-group">
                 <label for="description">내용</label>
-                <textarea class="form-control" id="description" name="description" rows="10" th:field="*{description}"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="10" 
+                    th:classappend="${#fields.hasErrors('description')} ? 'is-invalid'" th:field="*{description}"></textarea>
             </div>
             <!--<div class="form-group">
                 <label for="img">이미지</label>

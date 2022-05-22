@@ -35,5 +35,8 @@ public class ProductApiController {
         return repository.findById(id).orElse(null);
     }
 
-
+    @DeleteMapping("/products/{id}")
+    void deleteProduct(@PathVariable Long id) {
+        repository.deleteById(id);
+    }
 }

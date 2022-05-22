@@ -36,7 +36,7 @@
                     <td><p th:text="${user.useradd1}">주소1</p> </td>
                     <td><p th:text="${user.useradd2}">주소2</p> </td>
                     <td><p th:text="${user.email}">이메일</p> </td>
-                    <td><button type="button" class="btn btn-outline-danger" style="margin-top: 0;">강제 탈퇴</button></td>
+                    <td><button type="button" class="btn btn-outline-danger" th:onclick="|deleteUser(id=${user.id})|" style="margin-top: 0;">강제 탈퇴</button></td>
                 </tr>
             </tbody>
         </table>
@@ -44,17 +44,17 @@
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${1 == users.pageable.pageNumber + 1} ? 'disabled'">
-                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${users.pageable.pageNumber - 1},searchText=${param.searchText})}"
+                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${users.pageable.pageNumber - 1})}"
                         tabindex="-1" aria-disabled="true"><</a>
                 </li>
                 <li class="page-item" th:classappend="${i == users.pageable.pageNumber + 1} ? 'disabled'"
                     th:each="i: ${#numbers.sequence(startPage, endPage)}">
-                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${i - 1},searchText=${param.searchText})}" th:text="${i}">1</a>
+                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${i - 1})}" th:text="${i}">1</a>
                 </li>
                 <li class="page-item"
                     th:classappend="${users.totalPages == users.pageable.pageNumber + 1} ? 'disabled'">
                     <a class="page-link" href="#"
-                        th:href="@{/account/admin_info(page=${users.pageable.pageNumber + 1},searchText=${param.searchText})}">></a>
+                        th:href="@{/account/admin_info(page=${users.pageable.pageNumber + 1})}">></a>
                 </li>
             </ul>
         </nav>
@@ -65,6 +65,22 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function deleteUser(id) {
+            var check = confirm("정말 탈퇴시키겠습니까?");
+            if(check) {
+                $.ajax({
+                    url: '/api/users/' + id,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log('result', result);
+                        alert('삭제되었습니다.');
+                        window.location.href = '/account/admin_info';
+                    }
+                })
+            }
+        }
+    </script>
 </body>
 
 </html>
