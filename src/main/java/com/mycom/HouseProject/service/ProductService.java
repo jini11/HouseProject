@@ -19,18 +19,18 @@ public class ProductService {
     public Product save(Product product, MultipartFile imgFile) throws Exception{
         if(product.getDiscount() == null)
             product.setDiscount(0L);
-
-        String oriImg = imgFile.getOriginalFilename();
-        String imgName = "";
-        String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
-        UUID uuid = UUID.randomUUID();
-        String fileName = uuid + "_" + oriImg;
-        imgName = fileName;
-        File saveFile = new File(path, imgName);
-        imgFile.transferTo(saveFile);
-        product.setImgName(imgName);
-        product.setImgPath("/image/product/" + imgName);
-
+        if(!imgFile.isEmpty()) {
+            String oriImg = imgFile.getOriginalFilename();
+            String imgName = "";
+            String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
+            UUID uuid = UUID.randomUUID();
+            String fileName = uuid + "_" + oriImg;
+            imgName = fileName;
+            File saveFile = new File(path, imgName);
+            imgFile.transferTo(saveFile);
+            product.setImgName(imgName);
+            product.setImgPath("/image/product/" + imgName);
+        }
         return productRepository.save(product);
     }
 

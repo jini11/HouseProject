@@ -142,6 +142,10 @@ p {
   text-align: center;
 }
 
+.intro_table tr {
+  border: none;
+}
+
 .intro_table img{
   width: 60%;
   height: 60%;
@@ -207,7 +211,8 @@ p {
 
 /* 공지사항 영역 */
 .main_notice {
-  width: 80%;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .main_notice td {
@@ -220,12 +225,25 @@ p {
   list-style: none;
 }
 
+.notice_form {
+  width: 85%;
+}
+
 .main_notice a {
   text-decoration: none;
 }
 
 .notice_date {
   font-size: 100%;
+}
+
+.notice_td {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.div_write {
+  width: 85%;
 }
 
 /* store 영역 */
@@ -244,6 +262,10 @@ p {
   width: 70%;
 }
 
+.menu_table tr {
+  border: none;
+}
+
 .deal {
   width: 100%;
   margin-bottom: 5%;
@@ -259,6 +281,7 @@ p {
   font-size: 90%;
   font-family: 'noto';
   margin-top: 1%; 
+  line-height: 2;
   color: gray;
 }
 
@@ -270,7 +293,7 @@ p {
 }
 
 .store_div .product_discount {
-  color: red; 
+  color: blue; 
   float: left; 
   font-size: 160%; 
   font-weight: bold; 

@@ -38,43 +38,43 @@
     <div class="menu_table">
         <table class="col-6 menu">
             <tr>
-                <td>
+                <!--<td>
                     <a href="christmas.html">
                         <img th:src="@{/image/menu/menu1.webp}" src="../Images/menu/menu1.webp">
                         <div class="menu_name">전체</div>
                     </a>
-                </td>
+                </td>-->
 
                 <td>
-                    <a href="furniture.html">
+                    <a href="furniture.html" th:href="@{/product/store(category='1')}">
                         <img th:src="@{/image/menu/menu2.webp}" src="../Images/menu/menu2.webp">
                         <div class="menu_name">가구</div>
                     </a>
                 </td>
 
                 <td>
-                    <a href="fabric.html">
+                    <a href="fabric.html" th:href="@{/product/store(category='2')}">
                         <img th:src="@{/image/menu/menu3.webp}" src="../Images/menu/menu3.webp">
                         <div class="menu_name">패브릭</div>
                     </a>
                 </td>
 
                 <td>
-                    <a href="light.html">
+                    <a href="light.html" th:href="@{/product/store(category='3')}">
                         <img  th:src="@{/image/menu/menu4.webp}" src="../Images/menu/menu4.webp">
                         <div class="menu_name">조명</div>
                     </a>
                 </td>
 
                 <td>
-                    <a href="storage.html">
+                    <a href="storage.html" th:href="@{/product/store(category='4')}">
                         <img th:src="@{/image/menu/menu5.webp}" src="../Images/menu/menu5.webp">
                         <div class="menu_name">수납/정리</div>
                     </a>
                 </td>
 
                 <td>
-                    <a href="electronics.html">
+                    <a href="electronics.html" th:href="@{/product/store(category='5')}">
                         <img th:src="@{/image/menu/menu6.webp}" src="../Images/menu/menu6.webp">
                         <div class="menu_name">가전</div>
                     </a>
@@ -92,10 +92,10 @@
                     <img th:src="@{${product.getImgPath()}}">
                 </div>
                 <div>
-                    <h3>
+                    <h5>
                         <span th:text="${product.company}" class="product_company">오트밀하우스</span><br>
                         <span th:text="${product.name}" class="product_name">BEST 침대/소파/식탁/서랍장/거울/드레스룸/거실장 모음전</span>
-                    </h3>
+                    </h5>
                     <span>
                         <span th:text="${product.discount} + '%'" class="product_discount">47%</span>
                         <span th:text="${product.price}" class="product_price">155,000</span>

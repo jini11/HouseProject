@@ -19,7 +19,7 @@ public class Product {
     @NotNull
     private String company;
     @NotNull
-    private Long category;
+    private String category;
     @NotNull
     private Long price;
     @NotNull

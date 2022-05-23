@@ -31,8 +31,12 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @GetMapping("/store")
-    public String store(Model model) {
-        List<Product> products = productRepository.findAll();
+    public String store(Model model, @RequestParam(required = false, defaultValue = "") String category) {
+        List<Product> products;
+        if(category.equals(""))
+            products = productRepository.findAll();
+        else
+            products = productRepository.findByCategory(category);
         model.addAttribute("products", products);
         return "product/store";
     }
@@ -79,7 +83,7 @@ public class ProductController {
     @PostMapping("/register")
     public String postRegister(@Valid Product product, MultipartFile imgFile) throws Exception {
         productService.save(product, imgFile);
-        return "redirect:/admin/manage";
+        return "redirect:/product/manage";
     }
 
 }

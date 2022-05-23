@@ -25,17 +25,17 @@
     <!-- 공지사항 -->
     <p style="text-align: center; font-size: 200%; font-weight: bold; margin-top: 10rem; margin-bottom: 5rem;">공지사항</p>
     <div class="main_notice">
-        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/board/list}">
+        <form class="form-inline d-flex justify-content-end notice_form" method="GET" th:action="@{/board/list}">
             <div class="form-group mx-sm-2 mb-2">
                 <label for="searchText" class="sr-only">검색</label>
                 <input type="text" class="form-control" id="searchText" name="searchText" th:value="${param.searchText}">
             </div>
             <button type="submit" class="btn btn-secondary mb-2">검색</button>
         </form>
-        <table class="table table-striped" style="width: 70%; margin-left: 30%;" >
+        <table class="table table-hover" style="width: 70%; margin: 2% auto;" >
             <tbody>
-                <tr th:each="board : ${boards}">
-                    <td>
+                <tr style="border: none;" th:each="board : ${boards}">
+                    <td class="notice_td">
                         <a th:href="@{/board/form(id=${board.id})}">
                             <p th:text="${board.title}" style="font-size: 110%;">iOS 12.x 버전 업데이터 지원 중단 안내</p>&nbsp;&nbsp;&nbsp;
                             <p th:text="${board.user.userid}" style="font-size: 100%; float:right; padding-right: 5rem; margin-bottom:0;">작성자</p><br>
@@ -46,12 +46,12 @@
             </tbody>
         </table>
         
-        <div class="text-right">
+        <div class="text-right div_write">
             <a type="button" class="btn btn-secondary" th:href="@{/board/form}" 
                 sec:authorize="hasRole('ROLE_ADMIN')">쓰기</a>
         </div>
 
-        <nav aria-label="Page navigation example" style="margin-left: 25%; margin-top: 5%;">
+        <nav aria-label="Page navigation example" style="margin: 0 auto; margin-top: 5%;">
             <ul class="pagination justify-content-center">
                 <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
                     <a class="page-link" href="#" th:href="@{/board/list(page=${boards.pageable.pageNumber - 1},searchText=${param.searchText})}"

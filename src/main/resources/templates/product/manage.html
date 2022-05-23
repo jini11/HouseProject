@@ -39,7 +39,7 @@
                     <td><p th:text="${product.price}">가격</p> </td>
                     <td><p th:text="${product.stock}">재고</p> </td>
                     <td><p th:text="${product.discount}">할인율</p> </td>
-                    <td><a type="button" class="btn btn-outline-danger" th:href="@{/product/register(id=${product.id})}" style="margin-top: 0;">수정하기</a></td>
+                    <td><a type="button" class="btn btn-outline-info" th:href="@{/product/register(id=${product.id})}" style="margin-top: 0;">수정하기</a></td>
                     <td><a type="button" class="btn btn-outline-danger" th:onclick="|deleteProduct(id=${product.id})|" style="margin-top: 0;">삭제하기</a></td>
                 </tr>
             </tbody>

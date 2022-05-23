@@ -8,6 +8,7 @@ import com.mycom.HouseProject.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 
@@ -20,9 +21,8 @@ public class ProductApiController {
     private ProductRepository repository;
 
     @GetMapping("/products")
-    List<Product> all() {
-        List<Product> products = repository.findAll();
-        return products;
+    List<Product> all(@RequestParam(required = false, defaultValue = "") String category) {
+        return repository.findAll();
     }
 
     @PostMapping("/products")
