@@ -41,9 +41,15 @@ public class ProductController {
         return "product/store";
     }
 
-    @GetMapping("/pd1")
-    public String pd() {
-        return "product/pd1";
+    @GetMapping("/order")
+    public String order(Model model, @RequestParam(required = false) Long id) {
+        if(id == null) {
+            model.addAttribute("product", new Product());
+        } else {
+            Product product = productRepository.findById(id).orElse(null);
+            model.addAttribute("product", product);
+        }
+        return "product/order";
     }
 
     @GetMapping("/register")
