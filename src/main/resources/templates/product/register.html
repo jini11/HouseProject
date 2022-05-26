@@ -32,6 +32,7 @@
                     <option th:selected="${product.category}=='3'" th:value="'3'">조명</option>
                     <option th:selected="${product.category}=='4'" th:value="'4'">수납/정리</option>
                     <option th:selected="${product.category}=='5'" th:value="'5'">가전</option>
+                    <option th:selected="${product.category}=='6'" th:value="'6'">기타</option>
                 </select>
             </div>
             <div class="form-group">
@@ -56,12 +57,22 @@
             </div>
             <div class="form-group">
                 <label for="imgFile">이미지</label>
-                <input type="file" id="imgFile" name="imgFile">
-                <!--<img th:src="@{${product.getImgPath()}}">-->
+                <input type="file" id="imgFile" name="imgFile"
+                    th:classappend="${#fields.hasErrors('imgPath')} ? 'is-invalid'"><br>
+                <p th:field="${product.imgName}" id="imgName" name="imgName"
+                    th:classappend="${#fields.hasErrors('imgName')} ? 'is-invalid'">파일 이름</p>-
+                <img th:src="@{${product.getImgPath()}}" th:field="${product.imgPath}" id="imgPath" name="imgPath"
+                    th:classappend="${#fields.hasErrors('imgPath')} ? 'is-invalid'" >
             </div>
             <div class="text-right">
-                <a type="button" class="btn btn-primary" th:href="@{/admin/index}" sec:authorize="hasRole('ROLE_ADMIN')">취소</a>
-                <button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">확인</button>
+                <a type="button" class="btn btn-primary" th:href="@{/admin/index}" sec:authorize="hasRole('ROLE_ADMIN')"
+                    th:if="${product.name == null}">취소</a>
+                <a type="button" class="btn btn-primary" th:href="@{/product/manage}" sec:authorize="hasRole('ROLE_ADMIN')"
+                    th:if="${product.name != null}">취소</a>
+                <!--<button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
+                    th:if="${product.name == null}">확인</button>-->
+                <button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
+                    th:if="${product.name != null}" th:onclick="|updateProduct(id=*{id})|">확인</button>
             </div> 
         </form>
     </div>
@@ -71,6 +82,20 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
+    <!--<script>
+        function updateProduct(id) {
+            $.ajax({
+                url: '/api/products/' + id,
+                type: 'PUT',
+                success: function(result) {
+                    console.log('result', result);
+                    alert('수정이 완료되었습니다.');
+                    window.location.href = '/product/manage';
+                }
+            })
+        }
+        
+    </script>-->
 </body>
 
 </html>

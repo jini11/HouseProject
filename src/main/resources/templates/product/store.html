@@ -68,6 +68,13 @@
                         <div class="menu_name">가전</div>
                     </a>
                 </td>
+
+                <td>
+                    <a href="electronics.html" th:href="@{/product/store(category='6')}">
+                        <img th:src="@{/image/menu/menu6.webp}" src="../Images/menu/menu6.webp">
+                        <div class="menu_name">기타</div>
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
@@ -86,9 +93,9 @@
                         <span th:text="${product.name}" class="product_name">BEST 침대/소파/식탁/서랍장/거울/드레스룸/거실장 모음전</span>
                     </h5>
                     <span>
-                        <span th:text="${product.discount} + '%'" class="product_discount" th:if="${product.discount != 0}">47%</span>
-                        <span th:text="${product.price} + '원'" class="product_price" th:style="${product.discount == 0 ? 'padding-left: 0;' : '
-                        padding-left: 8%;'}">155,000</span>
+                        <span th:text="${product.discount}" class="product_discount" th:if="${product.discount != 0}" id="discount">47%</span><p class="product_discount">%</p>
+                        <span class="product_price" th:style="${product.discount == 0 ? 'padding-left: 0;' : '
+                        padding-left: 8%;'}" th:text="${product.saleprice}">155,000</span>
                     </span>
                 </div>
             </a>
@@ -101,7 +108,7 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
-    <script th:src="@{/JavaScript/common.js}" type="text/javascript"></script>
+    
 </body>
 
 </html>

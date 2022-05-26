@@ -262,13 +262,17 @@ p {
   width: 70%;
 }
 
+.store_div a {
+  text-decoration: none;
+}
+
 .menu_table tr {
   border: none;
 }
 
 .deal {
   width: 100%;
-  margin-bottom: 5%;
+  height: 35rem;
   float: left;
 }
 
@@ -286,7 +290,7 @@ p {
 }
 
 .store_div .product_name {
-  font-size: 120%;
+  font-size: 110%;
   font-family: 'noto';
   font-weight: bold;
   color: black;
@@ -411,8 +415,8 @@ p {
 
 /* 회원 정보 수정 */
 .info_form {
-  width: 70%;
-  margin: 10rem auto 10rem 18%;
+  width: 80%;
+  margin: 10rem auto 10rem auto;
   padding: 4rem 3rem 4rem 3rem;
   border: 1px solid lightgray;
 }

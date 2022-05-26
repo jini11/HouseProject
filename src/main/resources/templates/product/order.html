@@ -29,9 +29,9 @@
                     <td colspan="2">
                         <p class="market" th:text="${product.company}">자코모</p>
                         <p class="pd_name" th:text="${product.name}">프리미엄 기능성 패브릭/천연가죽 소파</p>
-                        <p class="percent" th:text="${product.discount} + '%'" th:if="${product.discount != 0}">60%</p>
-                        <!--<p class="origin">3,425,000원</p>-->
-                        <p class="saleprice" th:text="${product.price}" id="price">1,370,000원</p><p class="won">&nbsp;원</p>
+                        <p class="discount" th:text="${product.discount}" th:if="${product.discount != 0}" id="discount">60%</p><p class="percent">%</p>
+                        <p class="origin" th:text="${product.price}" id="originprice">3,425,000원</p><p class="won" style="text-decoration: line-through; font-size: 150%; color:lightgray;">원</p>
+                        <p class="saleprice" th:text="${product.saleprice}" id="saleprice">1,370,000원</p><p class="won">&nbsp;원</p>
                     </td>
                 </tr>
                 <tr>
@@ -62,7 +62,7 @@
                             <option th:value="5">5</option>
                         </select>
                     </td>-->
-                    <td class="num"><input type="number" min="1" th:max="${product.stock}" value="1" id="num" th:onclick="|calcprice()|"></td>
+                    <td class="num"><input type="number" min="1" th:max="${product.stock}" value="1" id="num" th:onclick="|calctotal()|"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -89,9 +89,9 @@
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
     <script>
-        function calcprice() {
+        function calctotal() {
             var count = document.getElementById("num").value;
-            var price = document.getElementById("price").textContent;
+            var price = document.getElementById("saleprice").textContent;
             var total = count * price;
             document.getElementById("total_price").innerText = total + "원";
         }

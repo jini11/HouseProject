@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.File;
@@ -87,9 +89,16 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid Product product, MultipartFile imgFile) throws Exception {
-        productService.save(product, imgFile);
+    public String postRegister(@Valid Product product, @RequestParam(required = false) MultipartFile imgFile, HttpServletRequest request) throws Exception {
+        if(!imgFile.isEmpty())
+            productService.save(product, imgFile);
+        else {
+            String imgName = product.getImgName();
+            String imgPath = request.getParameter("imgPath");
+            System.out.println("------------ imgname : " + imgName);
+            System.out.println("_______________imgpath: "+ imgPath);
+            productService.save(product, request.getParameter("imgName"), request.getParameter("imgPath"));
+        }
         return "redirect:/product/manage";
     }
-
 }

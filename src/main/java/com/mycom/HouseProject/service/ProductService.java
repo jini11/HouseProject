@@ -30,10 +30,45 @@ public class ProductService {
             imgFile.transferTo(saveFile);
             product.setImgName(imgName);
             product.setImgPath("/image/product/" + imgName);
+        } else {
+            String imgName = product.getImgName();
+            String path = product.getImgPath();
+            product.setImgName(imgName);
+            product.setImgPath(path);
+        }
+
+        if(product.getDiscount() != 0) {
+            Long price = product.getPrice();
+            Long discount = product.getDiscount();
+            int sprice = (int) (price * (1 - (discount * 0.01)));
+            Long saleprice = Long.valueOf(sprice);
+            product.setSaleprice(saleprice);
+        } else {
+            Long price = product.getPrice();
+            product.setSaleprice(price);
         }
         return productRepository.save(product);
     }
+    public Product save(Product product, String imgName, String imgPath) {
+        if(product.getDiscount() == null)
+            product.setDiscount(0L);
 
+        if(product.getDiscount() != 0) {
+            Long price = product.getPrice();
+            Long discount = product.getDiscount();
+            int sprice = (int) (price * (1 - (discount * 0.01)));
+            Long saleprice = Long.valueOf(sprice);
+            product.setSaleprice(saleprice);
+        } else {
+            Long price = product.getPrice();
+            product.setSaleprice(price);
+        }
+
+        product.setImgName(imgName);
+        product.setImgPath(imgPath);
+
+        return productRepository.save(product);
+    }
     public void deleteProduct(@PathVariable Long id) {
         productRepository.deleteById(id);
     }

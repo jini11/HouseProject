@@ -25,6 +25,7 @@ public class Product {
     @NotNull
     private Long stock;
     private Long discount;
+    private Long saleprice;
     private String description;
     private String imgName;
     private String imgPath;
