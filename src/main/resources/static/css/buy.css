@@ -87,10 +87,24 @@ td {
     color: black;
 }
 
-.percent {
-    margin-right: 2%; 
+.discount {
     color: blue; 
     font-size: 150%;
+    float: left;
+}
+
+.percent {
+    font-size: 150%;
+    color: blue;
+    float:left;
+}
+
+.origin {
+    margin-left: 3%;
+    font-size: 150%;
+    color: lightgray;
+    float: left;
+    text-decoration: line-through;
 }
 
 .saleprice {

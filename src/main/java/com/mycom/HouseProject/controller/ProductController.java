@@ -89,15 +89,18 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid Product product, @RequestParam(required = false) MultipartFile imgFile, HttpServletRequest request) throws Exception {
-        if(!imgFile.isEmpty())
-            productService.save(product, imgFile);
-        else {
-            String imgName = product.getImgName();
-            String imgPath = request.getParameter("imgPath");
-            System.out.println("------------ imgname : " + imgName);
-            System.out.println("_______________imgpath: "+ imgPath);
-            productService.save(product, request.getParameter("imgName"), request.getParameter("imgPath"));
+    public String postRegister(@Valid Product product, @RequestParam(required = false) MultipartFile imgFile,
+                               BindingResult bindingResult, @RequestParam(required = false) Long id) throws Exception {
+        if(bindingResult.hasErrors())
+            return "product/manage";
+
+        if(!imgFile.isEmpty()) {
+            if (id != null) { // 기존 상품 수정(이미지 수정 있음. 기존 이미지 삭제)
+                productService.deleteImg(id);
+            }
+            productService.save(product, imgFile); // 새로운 이미지 업로드
+        } else {
+            productService.save(id, product); // 기존 상품 수정(이미지 수정 없음)
         }
         return "redirect:/product/manage";
     }

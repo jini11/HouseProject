@@ -71,8 +71,7 @@
                     th:if="${product.name != null}">취소</a>
                 <!--<button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
                     th:if="${product.name == null}">확인</button>-->
-                <button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')"
-                    th:if="${product.name != null}" th:onclick="|updateProduct(id=*{id})|">확인</button>
+                <button type="submit" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')" >확인</button>
             </div> 
         </form>
     </div>
@@ -82,20 +81,6 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
-    <!--<script>
-        function updateProduct(id) {
-            $.ajax({
-                url: '/api/products/' + id,
-                type: 'PUT',
-                success: function(result) {
-                    console.log('result', result);
-                    alert('수정이 완료되었습니다.');
-                    window.location.href = '/product/manage';
-                }
-            })
-        }
-        
-    </script>-->
 </body>
 
 </html>
