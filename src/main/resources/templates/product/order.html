@@ -27,6 +27,7 @@
                     <td rowspan="6"class="pd_area_img"><img th:src="@{${product.getImgPath()}}" src="../../Images/product/bsale1.webp"></td>
                     <td class="empty"> </td>
                     <td colspan="2">
+                        <input type="hidden" th:field="*{id}">
                         <p class="market" th:text="${product.company}">자코모</p>
                         <p class="pd_name" th:text="${product.name}">프리미엄 기능성 패브릭/천연가죽 소파</p>
                         <p class="discount" th:text="${product.discount}" th:if="${product.discount != 0}" id="discount">60%</p><p class="percent">%</p>
@@ -62,7 +63,7 @@
                             <option th:value="5">5</option>
                         </select>
                     </td>-->
-                    <td class="num"><input type="number" min="1" th:max="${product.stock}" value="1" id="num" th:onclick="|calctotal()|"></td>
+                    <td class="num"><input type="number" min="1" th:max="${product.stock}" value="1" id="count" name="count" th:onclick="|calctotal()|"></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -76,8 +77,10 @@
                 <tr class="buy_btn">
                     <td></td>
                     <td></td>
-                    <td><button type="submit" id="cart_btn" onclick="before_login()">장바구니</button></td>
-                    <td><button type="submit" onclick="buy()">바로구매</button></td>
+                    <td><button type="button" id="cart_btn" th:onclick="|addCart(*{id})|" sec:authorize="isAuthenticated()">장바구니</button>
+                        <button type="button" id="cart_btn" th:onclick="|login()|" sec:authorize="isAnonymous()">장바구니</button></td>
+                    <td><button type="submit" onclick="buy()" sec:authorize="isAuthenticated()">바로구매</button>
+                        <button type="submit" th:onclick="|login()|" sec:authorize="isAnonymous()">바로구매</button></td>
                 </tr>
             </table>
         </form>
@@ -90,10 +93,29 @@
     <footer th:replace="fragments/common :: footer"></footer>
     <script>
         function calctotal() {
-            var count = document.getElementById("num").value;
+            var count = document.getElementById("count").value;
             var price = document.getElementById("saleprice").textContent;
             var total = count * price;
             document.getElementById("total_price").innerText = total + "원";
+        }
+
+        function addCart(pid) {
+            var count = document.getElementById("count").value;
+            $.ajax({
+                url: '/cart/addCart/' + pid + '/' + count,
+                type : "POST",
+                success : function() {
+                    alert("장바구니에 담겼습니다.");
+                },
+                error : function() {
+                    alert("카트 담기 실패");
+                }
+            });
+        }
+
+        function login() {
+            alert('로그인이 필요합니다.');
+            window.location.href = '/account/login';
         }
     </script>
 </body>
