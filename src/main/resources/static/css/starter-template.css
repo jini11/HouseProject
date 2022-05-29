@@ -301,7 +301,6 @@ p {
   float: left; 
   font-size: 160%; 
   font-weight: bold; 
-  margin-top: 1%;
 }
 
 .store_div .product_price {
@@ -421,8 +420,13 @@ p {
   border: 1px solid lightgray;
 }
 
+.userinfo_table {
+  width: 90%;
+  margin: 0 auto;
+}
+
 .info_form th {
-  width: 50%;
+  width: 20%;
   background-color: #dfdfdf;
   padding: 11px 0px 10px 18px;
   vertical-align: top;
@@ -434,7 +438,7 @@ p {
 }
 
 .info_form input {
-  width: 150%;
+  width: 40%;
 }
 
 .info_form a {
@@ -443,6 +447,14 @@ p {
 
 .info_form button {
   margin-top: 5rem;
+}
+
+.address {
+  text-align: left;
+}
+
+.address input {
+  margin: 4px 4px 4px 0;
 }
 
 /* 관리자 마이페이지 */
@@ -466,4 +478,52 @@ select {
   border-radius: 5px;
   border: 1px solid lightgray;
   padding-left: 5px;
+}
+
+/* 장바구니 */
+.basket_form {
+  width: 70%;
+  margin: 10rem auto 10rem auto;
+  padding: 4rem 3rem 4rem 3rem;
+  border: 1px solid lightgray;
+}
+
+.basket_form thead {
+  background-color: rgb(243, 243, 243);
+}
+
+.basket_form th {
+  width: 50%;
+  background-color: #dfdfdf;
+  padding: 11px 0px 10px 18px;
+  vertical-align: top;
+}
+
+.basket_form td {
+  line-height: 50px;
+  padding: 8px 10px 7px 20px;
+}
+
+.basket_info {
+  width: 100%;
+  border: 1px solid gray;
+}
+
+.basket_info thead {
+  font-weight: bold;
+}
+
+.basket_info td {
+  border: none;
+  text-align: center;
+}
+
+.pay {
+  font-size: 180%;
+  font-weight: bold;
+}
+
+.div_buy {
+  margin: 0 auto;
+  text-align: center;
 }

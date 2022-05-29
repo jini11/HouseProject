@@ -22,6 +22,7 @@ public class UserService { // unit test?
         user.setEnabled(true);
         user.setUseradd1("");
         user.setUseradd2("");
+        user.setUseradd3("");
         Role role = new Role();
         role.setId(1l);
         user.getRoles().add(role);
@@ -34,6 +35,7 @@ public class UserService { // unit test?
         current.setPassword(encodedPassword);
         current.setUseradd1(user.getUseradd1());
         current.setUseradd2(user.getUseradd2());
+        current.setUseradd3(user.getUseradd3());
         current.setUsername(user.getUsername());
         current.setEmail(user.getEmail());
         return userRepository.save(current);

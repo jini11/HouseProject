@@ -95,7 +95,7 @@
                     <span>
                         <span th:text="${product.discount}" class="product_discount" th:if="${product.discount != 0}" id="discount">47%</span><p class="product_discount">%</p>
                         <span class="product_price" th:style="${product.discount == 0 ? 'padding-left: 0;' : '
-                        padding-left: 8%;'}" th:text="${product.saleprice}">155,000</span>
+                        padding-left: 8%;'}" th:text="${product.saleprice + '원'}">155,000</span>
                     </span>
                 </div>
             </a>

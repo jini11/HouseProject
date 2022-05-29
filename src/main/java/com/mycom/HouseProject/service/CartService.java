@@ -9,6 +9,8 @@ import com.mycom.HouseProject.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class CartService {
 
@@ -22,9 +24,10 @@ public class CartService {
     private UserRepository userRepository;
 
     public Cart save(String userid, Long pid, Cart cart) {
-        User user = userRepository.findByUserid(userid);
-        cart.setUser(user);
-        cart.setPid(pid);
+        //User user = userRepository.findByUserid(userid);
+        Product product = productRepository.findByid(pid);
+        cart.setUserid(userid);
+        cart.setProduct(product);
         cart.setCount(cart.getCount());
         return cartRepository.save(cart);
     }

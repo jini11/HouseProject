@@ -12,13 +12,18 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    private Long pid;
+    private String userid;
+
     @NotNull
     private Long count;
 
+//    @ManyToOne
+//    @JoinColumn(name = "userid")
+//    @JsonIgnore
+//    private User user;
+
     @ManyToOne
-    @JoinColumn(name = "userid")
+    @JoinColumn(name = "pid")
     @JsonIgnore
-    private User user;
+    private Product product;
 }

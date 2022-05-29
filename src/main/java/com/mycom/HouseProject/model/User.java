@@ -24,6 +24,7 @@ public class User {
     private String email;
     private String useradd1;
     private String useradd2;
+    private String useradd3;
     private Boolean enabled;
 
     @JsonIgnore
@@ -38,6 +39,6 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY) // 기본값 => OneToMany, ManyToMany: LAZY / OneToOne, ManyToOne: EAGER
     private List<Board> boards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private List<Cart> carts = new ArrayList<>();
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private List<Cart> carts = new ArrayList<>();
 }
