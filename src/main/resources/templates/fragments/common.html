@@ -26,9 +26,9 @@
                     <li class="nav-item" th:classappend="${menu} == 'intro'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/house/intro}">소개 <span class="sr-only" th:if="${menu} == 'intro'">(current)</span></a>
                     </li>
-                    <li class="nav-item" th:classappend="${menu} == 'visit'? 'active'">
+                    <!-- <li class="nav-item" th:classappend="${menu} == 'visit'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/house/visit}">집들이 <span class="sr-only" th:if="${menu} == 'visit'">(current)</span></a>
-                    </li>
+                    </li> -->
                     <li class="nav-item" th:classappend="${menu} == 'store'? 'active'">
                         <a class="nav-link" href="#" th:href="@{/product/store}">스토어 <span class="sr-only" th:if="${menu} == 'store'">(current)</span></a>
                     </li>
@@ -61,32 +61,6 @@
             <div>
                 <img th:src="@{/image/main.PNG}" class="img-fluid">
             </div>
-        </div>
-        
-        <!-- 상품 테이블 -->
-        <div class="table-responsive" th:fragment="fragment-table">
-            <table class="table table-hover" >
-                <thead>
-                    <tr>
-                        <td class="stitle">오늘의 딜</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <img th:src="@{/image/menu/menu1.webp}">
-                        </td>
-                        <td>
-                            <a href="#">
-                                <p class="store">플랜룩스</p>
-                                <P>LED 와이어전구 커튼조명 300구</P>
-                                <div class="name">41%</div>
-                                <div class="store_price">12,500</div>
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
 
         <!-- 하단 영역 -->

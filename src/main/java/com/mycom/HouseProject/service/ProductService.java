@@ -35,13 +35,13 @@ public class ProductService {
 
         // saleprice
         if(product.getDiscount() != 0) {
-            Long price = product.getPrice();
+            Long price = Long.valueOf(product.getPrice());
             Long discount = product.getDiscount();
             int sprice = (int) (price * (1 - (discount * 0.01)));
             Long saleprice = Long.valueOf(sprice);
             product.setSaleprice(saleprice);
         } else {
-            Long price = product.getPrice();
+            Long price = Long.valueOf(product.getPrice());
             product.setSaleprice(price);
         }
         return productRepository.save(product);
@@ -64,13 +64,13 @@ public class ProductService {
 
         // saleprice
         if(current.getDiscount() != 0) {
-            Long price = current.getPrice();
+            Long price = Long.valueOf(current.getPrice());
             Long discount = current.getDiscount();
             int sprice = (int) (price * (1 - (discount * 0.01)));
             Long saleprice = Long.valueOf(sprice);
             current.setSaleprice(saleprice);
         } else {
-            Long price = current.getPrice();
+            Long price = Long.valueOf(current.getPrice());
             current.setSaleprice(price);
         }
 

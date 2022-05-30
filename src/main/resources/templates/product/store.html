@@ -7,32 +7,18 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('store')">
     </nav>
 
-    <!-- 메인 이미지 화면 -->
-    <!--<div class="img_div">
-
-        <div class="img_sub">
-            <ul>
-                <li><img th:src="@{/image/main_img1.PNG}"></li>
-                <li><img th:src="@{/image/main_img2.PNG}"></li>
-                <li><img th:src="@{/image/main_img3.PNG}"></li>
-                <li><img th:src="@{/image/main_img4.PNG}"></li>
-                <li><img th:src="@{/image/main_img5.PNG}"></li>
-            </ul>
-        </div>
-    </div> -->
-
     <p class="category_title" style="margin-top: 5%; margin-left: 16%;">카테고리</p>
 
     <!-- 상품 종류 -->
     <div class="menu_table">
         <table class="col-6 menu">
             <tr>
-                <!--<td>
-                    <a href="christmas.html">
-                        <img th:src="@{/image/menu/menu1.webp}" src="../Images/menu/menu1.webp">
+                <td>
+                    <a href="christmas.html" th:href="@{/product/store(category='0')}">
+                        <p style="font-size: 220%; font-weight: bold; font-family: 'noto'; padding-top: 30%; margin-bottom: 22%;">ALL</p>
                         <div class="menu_name">전체</div>
                     </a>
-                </td>-->
+                </td>
 
                 <td>
                     <a href="furniture.html" th:href="@{/product/store(category='1')}">
@@ -71,7 +57,7 @@
 
                 <td>
                     <a href="electronics.html" th:href="@{/product/store(category='6')}">
-                        <img th:src="@{/image/menu/menu6.webp}" src="../Images/menu/menu6.webp">
+                        <img th:src="@{/image/menu/etc.webp}" src="../Images/menu/etc.webp">
                         <div class="menu_name">기타</div>
                     </a>
                 </td>

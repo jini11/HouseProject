@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,7 +36,7 @@ public class ProductController {
     @GetMapping("/store")
     public String store(Model model, @RequestParam(required = false, defaultValue = "") String category) {
         List<Product> products;
-        if(category.equals(""))
+        if(category.equals("") || category.equals("0"))
             products = productRepository.findAll();
         else
             products = productRepository.findByCategory(category);
@@ -55,6 +56,7 @@ public class ProductController {
     }
 
     @GetMapping("/register")
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(Model model, @RequestParam(required = false) Long id) {
         if(id == null) {
             model.addAttribute("product", new Product());
@@ -66,8 +68,14 @@ public class ProductController {
     }
 
     @GetMapping("/manage")
-    public String manage(Model model, @PageableDefault(size = 10) Pageable pageable) {
-        Page<Product> products = productRepository.findAll(pageable);
+    public String manage(Model model, @PageableDefault(size = 10) Pageable pageable,
+                         @RequestParam(required = false, defaultValue = "") String searchText,
+                         @RequestParam(required = false) Long category) {
+        Page<Product> products;
+        if(category == null || category == 0)
+            products = productRepository.findByNameContaining(searchText, pageable);
+        else
+            products = productRepository.findByNameContainingAndCategoryContaining(searchText, category, pageable);
         int startPage = Math.max(1, products.getPageable().getPageNumber() - 4);
         int endPage = Math.min(products.getTotalPages(), products.getPageable().getPageNumber() + 4);
         model.addAttribute("startPage", startPage);
@@ -89,17 +97,32 @@ public class ProductController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@Valid Product product, @RequestParam(required = false) MultipartFile imgFile,
-                               BindingResult bindingResult, @RequestParam(required = false) Long id) throws Exception {
-        if(bindingResult.hasErrors())
-            return "product/manage";
+    public String postRegister(@Valid Product product, BindingResult bindingResult, @RequestParam(required = false) MultipartFile imgFile,
+                               @RequestParam(required = false) Long id, RedirectAttributes re) throws Exception {
+        if(id != null) { // 수정
+            if(bindingResult.hasFieldErrors("name") || bindingResult.hasFieldErrors("company") || bindingResult.hasFieldErrors("category")
+                    || bindingResult.hasFieldErrors("price") || bindingResult.hasFieldErrors("stock")) {
+                re.addAttribute(id);
+                return "product/register";
+            }
+//            else if(bindingResult.hasFieldErrors("imgPath"))
+//                return "redirect:/product/manage";
+        } else { // 등록
+            if(!imgFile.isEmpty()) {
+                return "redirect:/product/manage";
+            }
+            else if(bindingResult.hasErrors())
+                return "product/register";
+        }
 
-        if(!imgFile.isEmpty()) {
+        if(!imgFile.isEmpty()) { // 이미지 있음
             if (id != null) { // 기존 상품 수정(이미지 수정 있음. 기존 이미지 삭제)
+                System.out.println("기존 상품 수정(이미지 첨부 했음");
                 productService.deleteImg(id);
             }
             productService.save(product, imgFile); // 새로운 이미지 업로드
         } else {
+            System.out.println("기존 상품 수정(이미지 첨부 안했음");
             productService.save(id, product); // 기존 상품 수정(이미지 수정 없음)
         }
         return "redirect:/product/manage";

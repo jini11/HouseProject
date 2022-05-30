@@ -77,9 +77,9 @@
                 <tr class="buy_btn">
                     <td></td>
                     <td></td>
-                    <td><button type="button" id="cart_btn" th:onclick="|addCart(*{id})|" sec:authorize="isAuthenticated()">장바구니</button>
+                    <td><button type="button" id="cart_btn" th:onclick="|addCart(*{id})|" sec:authorize="hasRole('ROLE_USER')">장바구니</button>
                         <button type="button" id="cart_btn" th:onclick="|login()|" sec:authorize="isAnonymous()">장바구니</button></td>
-                    <td><button type="submit" onclick="buy()" sec:authorize="isAuthenticated()">바로구매</button>
+                    <td><button type="submit" onclick="buy()" sec:authorize="hasRole('ROLE_USER')">바로구매</button>
                         <button type="submit" th:onclick="|login()|" sec:authorize="isAnonymous()">바로구매</button></td>
                 </tr>
             </table>

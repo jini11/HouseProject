@@ -5,38 +5,34 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('home')">
-        <!-- <a class="navbar-brand" href="#">Spring Boot Tutorial</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">홈 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">게시판</a>
-                </li>
-            </ul>
-        </div> -->
+        
     </nav>
 
     <div th:replace="fragments/common :: fragment-mainimg"></div>
 
-    <!--<main role="main" class="container">
-
-        <div class="starter-template">
-            <h1>Spring Boot Tutorial</h1>
-            <p class="lead">Spring Boot을 이용해 웹 페이지 제작<br>
-                Spring Security, JPA를 이용해 보안 설정과 데이터 다루기</p>
-        </div>
-
-    </main> /.container -->
-
     <!-- 상품 테이블 -->
-    <div th:replace="fragments/common :: fragment-table"></div>
+    <p class="category_title" style="margin-top: 10%; margin-left: 17%;">오늘의 딜</p>
+    <div class="store_div" style="margin-bottom: 50rem;">
+        <div class="col-3 col-md-3 deal" th:each="product, i : ${products}" th:if="${i.count < 5}">
+            <a th:href="@{/product/order(id=${product.id})}">
+                <div>
+                    <img th:src="@{${product.getImgPath()}}">
+                </div>
+                <div>
+                    <h5>
+                        <span th:text="${product.company}" class="product_company">오트밀하우스</span><br>
+                        <span th:text="${product.name}" class="product_name">BEST 침대/소파/식탁/서랍장/거울/드레스룸/거실장 모음전</span>
+                    </h5>
+                    <span>
+                        <span th:text="${product.discount}" class="product_discount" th:if="${product.discount != 0}" id="discount">47%</span><p class="product_discount">%</p>
+                        <span class="product_price" th:style="${product.discount == 0 ? 'padding-left: 0;' : '
+                        padding-left: 8%;'}" th:text="${product.saleprice + '원'}">155,000</span>
+                    </span>
+                </div>
+            </a>
+        </div>
+    </div>
+    <!-- 상품 영역 끝 -->
 
     <!-- 인기사진 -->
     <div class="main_room">
