@@ -13,7 +13,7 @@
         <table class="userinfo_table">
             <tr>
                 <th>아이디</th>
-                <td><input type="text" class="form-control" th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" id="userid" th:field="*{userid}" disabled readonly>
+                <td><p class="form-control" id="userid" th:field="*{userid}">
                     
             </tr>
             <tr>
@@ -49,7 +49,7 @@
             </tr>
         </table>
         <button type="submit" class="btn btn-secondary" style="width: 20%;" th:onclick="|updateUser()|">회원 정보 수정</button>
-        <a class="btn" type="button" th:onclick="|deleteUser(*{id})|" style="float:right; text-decoration:underline;">탈퇴하기</a>
+        <a class="btn" type="button" th:data-p1="*{id}" th:data-p2="*{userid}" th:onclick="|deleteUser(this.getAttribute('data-p1'), this.getAttribute('data-p2'))|" style="float:right; text-decoration:underline;">탈퇴하기</a>
     </form>
 
     <!-- 푸터 설명 -->
@@ -62,9 +62,16 @@
             alert('수정이 완료되었습니다.');
         }
 
-        function deleteUser(id) {
+        function deleteUser(id, userid) {
             var check = confirm('정말 탈퇴하시겠습니까?');
             if(check) {
+                $.ajax({
+                    url: '/api/deletes/' + userid,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log('result', result);
+                    }
+                }),
                 $.ajax({
                     url: '/api/users/' + id,
                     type: 'DELETE',

@@ -38,12 +38,15 @@ public class AccountController {
     }
 
     @GetMapping("/register")
-    public String register() {
+    public String register(Model model) {
+        model.addAttribute("user", new User());
         return "account/register";
     }
 
     @PostMapping("/register")
-    public String register(User user) {
+    public String register(@Valid User user, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())
+            return "account/register";
         userService.save(user);
         return "redirect:/";
     }

@@ -52,6 +52,18 @@ class UserApiController {
                 });
     }
 
+    @GetMapping("/checkUserid/{user_id}")
+    public String checkUserid(@PathVariable String user_id) {
+        User user = repository.findByUserid(user_id);
+        boolean chk;
+
+        if(user == null)
+            chk = true;
+        else
+            chk = false;
+        return chk + "";
+    }
+
     @DeleteMapping("/users/{id}")
     void deleteUser(@PathVariable Long id) {
         repository.deleteById(id);

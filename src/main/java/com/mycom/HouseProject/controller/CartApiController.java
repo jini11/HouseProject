@@ -42,6 +42,11 @@ class CartApiController {
         repository.deleteById(id);
     }
 
+    @DeleteMapping("/deletes/{userid}")
+    void deleteCartUser(@PathVariable String userid) {
+        repository.deleteByUserid(userid);
+    }
+
     @PutMapping("/carts/{id}/{count}")
     Cart replaceCart(@PathVariable Long id, @PathVariable Long count) {
         Cart cart = repository.findByid(id);

@@ -15,24 +15,46 @@
 </head>
 
 <body class="text-center">
-    <form class="form-signin" th:action="@{/account/register}" method="post">
+    <form class="form-signin" th:action="@{/account/register}" method="post" th:object="${user}">
         
         <h1 class="h3 mb-3 font-weight-bold">회원가입</h1>
-        <label for="userid" class="sr-only">아이디</label>
-        <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디" required autofocus>
-        <label for="inputPassword" class="sr-only">비밀번호</label>
-        <input type="text" id="inputPassword" name="password" class="form-control" placeholder="비밀번호" required>
-        <!--<label for="inputPassword" class="sr-only">비밀번호 확인</label>
-        <input type="text" id="inputPassword" name="password" class="form-control" placeholder="비밀번호 확인" required>
-        -->
-        <label for="inputName" class="sr-only">이름</label>
-        <input type="text" id="inputName" name="username" class="form-control" placeholder="이름" required>
-        <!--<label for="inputBitrh" class="sr-only">생년월일</label>
-        <input type="text" id="inputBitrh" name="birth" class="form-control" placeholder="생년월일" required>-->
-        <label for="inputEmail" class="sr-only">이메일</label>
-        <input type="text" id="inputEmail" name="email" class="form-control" placeholder="이메일" required>
+        <div class="form-group">
+            <label for="userid" class="sr-only">아이디</label>
+            <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디"
+                th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" th:field="*{userid}">
+            <button type="button" class="btn" th:onclick="|checkId()|" style="width: 30%; margin-top: 2rem; height: 45px;">중복 확인</button>
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('userid')}" th:errors="*{userid}">
+                아이디 에러 메시지
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="inputPassword" class="sr-only">비밀번호</label>
+            <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호"
+                th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" th:field="*{password}">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
+                비밀번호 에러 메시지
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName" class="sr-only">이름</label>
+            <input type="text" id="inputName" name="username" class="form-control" placeholder="이름"
+                th:classappend="${#fields.hasErrors('username')} ? 'is-invalid'" th:field="*{username}">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">
+                이름 에러 메시지
+            </div>
+        </div>
 
-        <button class="btn" type="submit">회원가입</button>
+        <div class="form-group">
+            <label for="inputEmail" class="sr-only">이메일</label>
+            <input type="text" id="inputEmail" name="email" class="form-control" placeholder="이메일"
+                th:classappend="${#fields.hasErrors('email')} ? 'is-invalid'" th:field="*{email}">
+            <div class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">
+                이메일 에러 메시지
+            </div>
+        </div>
+
+        <button class="btn" th:onclick="|register()|">회원가입</button>
         <div class="caption">
 			<a href="../index.html" th:href="@{/}">홈으로&nbsp; |</a>
 			<a href="signup.html" th:href="@{/account/login}">&nbsp;로그인</a>
@@ -42,6 +64,48 @@
     </form>
 
     <footer th:replace="fragments/common :: footer"></footer>
+
+    <script>
+        var check = false;
+        function checkId() {
+            var user_id = $("#userid").val();
+            if(user_id.length == 0) {
+                alert("아이디를 입력해주세요");
+                return;
+            }
+
+            $.ajax({
+                url: "/api/checkUserid/" + user_id,
+                type: "GET",
+                dataType: "text",
+                success: function(result) {
+                    if(result.trim() == 'true') {
+                        alert("사용할 수 있는 아이디입니다.");
+                        check = true;
+                    } else {
+                        alert("이미 존재하는 아이디입니다.");
+                        check = false;
+                    }
+                } 
+            })
+        }
+        function register() {
+            if(check) {
+                $.ajax({
+                    url: "/account/register",
+                    type: "POST",
+                    success: function(result) {
+                        console.log("result", result);
+                    }
+                })
+                check = false;
+            } else {
+                alert("아이디 중복 확인을 해주세요.");
+            }
+        }
+        // 중복확인 클릭해야 회원가입할 수 있게
+    </script>
+
 </body>
 
 </html>
