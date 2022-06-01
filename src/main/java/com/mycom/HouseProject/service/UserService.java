@@ -31,8 +31,13 @@ public class UserService { // unit test?
 
     public User save(String userid, User user) {
         User current = userRepository.findByUserid(userid);
-        String encodedPassword = passwordEncoder.encode(user.getPassword());
-        current.setPassword(encodedPassword);
+        if(user.getPassword() != null && user.getPassword() != "") {
+            String encodedPassword = passwordEncoder.encode(user.getPassword());
+            current.setPassword(encodedPassword);
+        }
+        else
+            current.setPassword(current.getPassword());
+        System.out.println("패스워드으으응으으으으으으으릉르으릉르을ㅇ: "+current.getPassword());
         current.setUseradd1(user.getUseradd1());
         current.setUseradd2(user.getUseradd2());
         current.setUseradd3(user.getUseradd3());

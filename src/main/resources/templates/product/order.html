@@ -79,7 +79,9 @@
                     <td></td>
                     <td><button type="button" id="cart_btn" th:onclick="|addCart(*{id})|" sec:authorize="hasRole('ROLE_USER')">장바구니</button>
                         <button type="button" id="cart_btn" th:onclick="|login()|" sec:authorize="isAnonymous()">장바구니</button></td>
-                    <td><button type="submit" onclick="buy()" sec:authorize="hasRole('ROLE_USER')">바로구매</button>
+                    <td>
+                        <button type="button" sec:authorize="hasRole('ROLE_USER')" th:onclick="|addOrder()|">바로구매</button>
+                        <!-- <button type="button" sec:authorize="hasRole('ROLE_USER')" th:onclick="|addOrder(*{id})|">바로구매</button> -->
                         <button type="submit" th:onclick="|login()|" sec:authorize="isAnonymous()">바로구매</button></td>
                 </tr>
             </table>
@@ -113,6 +115,22 @@
             });
         }
 
+        /*function addOrder(pid) {
+            var count = document.getElementById("count").value;
+            $.ajax({
+                url: '/pay/addOrder/' + pid + '/' + count,
+                type: "request",
+                success: function() {
+                   // alert("주문이 완료되었습니다.");
+                   window.location.href = "/pay/order";
+                }
+
+            })
+        }*/
+        function addOrder() {
+            alert('서비스 준비 중입니다.');
+        }
+        
         function login() {
             alert('로그인이 필요합니다.');
             window.location.href = '/account/login';

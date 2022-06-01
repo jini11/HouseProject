@@ -20,14 +20,20 @@ public class User {
     private Long id;
 
     @NotBlank(message = "아이디를 입력해주세요.")
+    @Pattern(regexp = "^[a-zA-Z0-9]{4,}", message = "아이디는 영문, 숫자 포함 4자 이상입니다.")
     private String userid;
 
-    @NotBlank(message = "비밀번호를 입력해주세요.")
-    //@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\\\W)(?=\\\\S+$).{8,16}", message = "비밀번호는 8자리 이상 영문 대소문자, 숫자, 특수문자를 사용하세요.")
+    //@NotBlank(message = "비밀번호를 입력해주세요.")
+    //@Pattern(regexp = "^.*(?=^.{8,16}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[\\d~!@#$%*^&+=]).*$", message = "비밀번호 형식이 올바르지 않음")
+    //@Pattern(regexp = "[a-zA-Z0-9]+", message = "비밀번호 형식 오류")
+    //@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\\$\\@\\$\\!\\%\\*\\#\\?\\&])[A-Za-z[0-9]$@$!%*#?&]{8,20}$", message = "영문, 숫자 포함 8자 이상")
+    //@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z]).{8,20}", message = "비밀번호는 영문, 숫자, 특수문자 포함 8~16자입니다.")
+    @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$", message = "비밀번호는 영문,숫자,특수문자 포함 8자이상입니다.")
     private String password;
-    @Size(min = 2, max = 8)
+    @Size(min = 2, max = 10)
     private String username;
-    @Pattern(regexp = "[a-zA-z0-9]+@[a-zA-z]+[.]+[a-zA-z.]+", message = "이메일 형식이 올바르지 않습니다.")
+
+    @Email(message = "이메일 형식이 올바르지 않습니다.")
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
     private String useradd1;
