@@ -10,4 +10,7 @@ public class HouseController {
 
     @GetMapping("/intro")
     public String intro() { return "house/intro";}
+
+    @GetMapping("/visit")
+    public String visit() { return "house/visit";}
 }

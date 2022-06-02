@@ -30,7 +30,7 @@
         
         <div class="form-group">
             <label for="inputPassword" class="sr-only">비밀번호</label>
-            <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호(영문, 숫자, 특수기호(!@#$%^&*) 포함)"
+            <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호"
                 th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" th:field="*{password}">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                 비밀번호 에러 메시지
@@ -66,19 +66,11 @@
     <footer th:replace="fragments/common :: footer"></footer>
 
     <script>
-        var checkid = false;
-        var pattern1 = /[`~!@#$%^&*|\\\'\"\-;:/?]/gi;
-
+        var check = false;
         function checkId() {
             var user_id = $("#userid").val();
             if(user_id.length == 0) {
                 alert("아이디를 입력해주세요");
-                return;
-            } else if(user_id.search(/\s/) != -1) {
-                alert("공백은 들어갈 수 없습니다.");
-                return;
-            } else if(pattern1.test(user_id)) {
-                alert("아이디에 특수문자는 들어갈 수 없습니다.");
                 return;
             }
 
@@ -89,16 +81,16 @@
                 success: function(result) {
                     if(result.trim() == 'true') {
                         alert("사용할 수 있는 아이디입니다.");
-                        checkid = true;
+                        check = true;
                     } else {
                         alert("이미 존재하는 아이디입니다.");
-                        checkid = false;
+                        check = false;
                     }
                 } 
             })
         }
         function register() {
-            if(checkid) {
+            if(check) {
                 $.ajax({
                     url: "/account/register",
                     type: "POST",
@@ -106,7 +98,7 @@
                         console.log("result", result);
                     }
                 })
-                //check = false;
+                check = false;
             } else {
                 alert("아이디 중복 확인을 해주세요.");
             }

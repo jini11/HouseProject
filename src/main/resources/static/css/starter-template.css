@@ -169,6 +169,46 @@ p {
   margin-right: 1%;
 }
 
+/* 집들이 영역 */
+.home_table {
+  margin-left: 12rem;
+  margin-top: 1rem;
+  margin-bottom: 10rem;
+  width: 80%;
+  height: 30%;
+}
+
+.home td {
+  width: 15%;
+  height: 16%;
+  text-align: center;
+}
+
+.home img {
+  display: inline-block;
+  object-fit: cover;
+  overflow: hidden;
+  border-spacing: 0;
+  border-radius: 2%;
+  width: 90%;
+  height: 250px;
+  margin-bottom: 1rem;
+}
+
+.home p {
+  font-size: 110%;
+  color: rgb(80, 79, 79);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.home_name {
+  text-align: center;
+  font-size: 90%;
+  color: rgb(80, 79, 79);
+  margin-bottom: 5rem;
+}
+
 /* 공지사항 영역 */
 .main_notice {
   width: 60%;
@@ -415,10 +455,6 @@ p {
 
 .address input {
   margin: 4px 4px 4px 0;
-}
-
-.invalid-feedback {
-  width: 40%;
 }
 
 /* 관리자 마이페이지 */
