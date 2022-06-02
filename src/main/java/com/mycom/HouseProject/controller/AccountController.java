@@ -62,7 +62,7 @@ public class AccountController {
     @PostMapping("/info")
     public String postInfo(@Valid User user, BindingResult bindingResult, Authentication authentication) {
         if(bindingResult.hasErrors())
-            return "account/info";
+            return "/account/info";
         String userid = authentication.getName();
         userService.save(userid, user);
         return "redirect:/account/info";

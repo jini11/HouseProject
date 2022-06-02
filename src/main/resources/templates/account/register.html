@@ -22,7 +22,7 @@
             <label for="userid" class="sr-only">아이디</label>
             <input type="text" id="userid" name="userid" class="form-control" placeholder="아이디"
                 th:classappend="${#fields.hasErrors('userid')} ? 'is-invalid'" th:field="*{userid}">
-            <button type="button" class="btn" th:onclick="|checkId()|" style="width: 30%; margin-top: 2rem; height: 45px;">중복 확인</button>
+            <button type="button" class="btn" th:onclick="|return (checkId())|" style="width: 30%; margin-top: 2rem; height: 45px;">중복 확인</button>
             <div class="invalid-feedback" th:if="${#fields.hasErrors('userid')}" th:errors="*{userid}">
                 아이디 에러 메시지
             </div>
@@ -30,11 +30,14 @@
         
         <div class="form-group">
             <label for="inputPassword" class="sr-only">비밀번호</label>
-            <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호"
+            <input type="text" id="password" name="password" class="form-control" placeholder="비밀번호(영문,숫자,특수문자 포함 8자리 이상)"
                 th:classappend="${#fields.hasErrors('password')} ? 'is-invalid'" th:field="*{password}">
             <div class="invalid-feedback" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">
                 비밀번호 에러 메시지
             </div>
+
+            <label for="inputPassword" class="sr-only">비밀번호 확인</label>
+            <input type="text" id="chkpassword" name="chkpassword" class="form-control" placeholder="비밀번호 확인">
         </div>
         <div class="form-group">
             <label for="inputName" class="sr-only">이름</label>
@@ -54,7 +57,7 @@
             </div>
         </div>
 
-        <button class="btn" th:onclick="|register()|">회원가입</button>
+        <button class="btn" th:onclick="|return (register())|">회원가입</button>
         <div class="caption">
 			<a href="../index.html" th:href="@{/}">홈으로&nbsp; |</a>
 			<a href="signup.html" th:href="@{/account/login}">&nbsp;로그인</a>
@@ -66,13 +69,28 @@
     <footer th:replace="fragments/common :: footer"></footer>
 
     <script>
-        var check = false;
+        var checkid = false;
+        var checkpw = false;
+        var checkpws = false;
+
         function checkId() {
             var user_id = $("#userid").val();
             if(user_id.length == 0) {
                 alert("아이디를 입력해주세요");
-                return;
+                checkid = false;
+                return false;
             }
+            if(user_id.length < 4) {
+                alert("아이디는 4자리 이상입니다.");
+                checkid = false;
+                return false;
+            }
+            if(!/^(?=.*[a-zA-Z])(?=.*[0-9]).{4,}$/.test(user_id)) {
+                alert("아이디는 영문, 숫자 포함 4자 이상이어야 합니다.");
+                $("#userid").val().focus();
+                checkid = false;
+                return false;
+            } else checkid = true;
 
             $.ajax({
                 url: "/api/checkUserid/" + user_id,
@@ -81,16 +99,56 @@
                 success: function(result) {
                     if(result.trim() == 'true') {
                         alert("사용할 수 있는 아이디입니다.");
-                        check = true;
+                        checkid = true;
                     } else {
                         alert("이미 존재하는 아이디입니다.");
-                        check = false;
+                        checkid = false;
                     }
                 } 
             })
         }
+
+        $("#password").change(function() {
+            var pw = $("#password").val();
+            var id = $("#userid").val();
+            if(!/^(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()+=-?])(?=.*[0-9]).{8,}$/.test(pw)) {
+                alert("비밀번호는 영문, 숫자, 특수문자 포함 8자 이상이어야 합니다.");
+                $("#password").val().focus();
+                checkpw = false;
+                return false;
+            } else checkpw = true;
+            
+            if(password.search(id) > -1){
+                alert("비밀번호에 아이디가 포함되었습니다.");
+                $('#password').val('').focus();
+                checkpw = false;
+                return false;
+            } else checkpw = true;
+
+            return true;
+        })
+
+        $("#chkpassword").change(function() {
+            var pw = $("#password").val();
+            var chkpw = $("#chkpassword").val();
+            /*if(chkpw.length() == 0) {
+                alert("비밀번호 확인을 입력해주세요");
+                checkpws = false;
+                return false;
+            }*/
+            if(pw != chkpw) {
+                alert("비밀번호가 일치하지 않습니다.");
+                $("#chkpassword").val().focus();
+                checkpws = false;
+                return false;
+            } else {
+                checkpws = true;
+                return true;
+            }
+        })
+
         function register() {
-            if(check) {
+            if(checkid && checkpw && checkpws) {
                 $.ajax({
                     url: "/account/register",
                     type: "POST",
@@ -99,8 +157,15 @@
                     }
                 })
                 check = false;
-            } else {
+            } else if(!checkid) {
                 alert("아이디 중복 확인을 해주세요.");
+                return false;
+            } else if(!checkpw) {
+                alert("비밀번호 형식이 잘못되었습니다.");
+                return false;
+            } else if(!checkpws) {
+                alert("비밀번호가 같지 않습니다.");
+                return false;
             }
         }
         // 중복확인 클릭해야 회원가입할 수 있게

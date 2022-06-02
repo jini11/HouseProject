@@ -23,11 +23,10 @@ public class User {
     private String userid;
 
     @NotBlank(message = "비밀번호를 입력해주세요.")
-    //@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\\\W)(?=\\\\S+$).{8,16}", message = "비밀번호는 8자리 이상 영문 대소문자, 숫자, 특수문자를 사용하세요.")
     private String password;
     @Size(min = 2, max = 8)
     private String username;
-    @Pattern(regexp = "[a-zA-z0-9]+@[a-zA-z]+[.]+[a-zA-z.]+", message = "이메일 형식이 올바르지 않습니다.")
+    @Email(message = "이메일 형식이 올바르지 않습니다.")
     @NotBlank(message = "이메일을 입력해주세요.")
     private String email;
     private String useradd1;

@@ -457,6 +457,10 @@ p {
   margin: 4px 4px 4px 0;
 }
 
+.invalid-feedback {
+  width: 40%;
+}
+
 /* 관리자 마이페이지 */
 .admin_info {
   border: 1px solid gray;

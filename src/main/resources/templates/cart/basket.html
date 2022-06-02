@@ -11,7 +11,7 @@
         <h3 style="font-weight:bold; margin-bottom:4rem;">장바구니</h3>
         <table class="basket_info">
             <thead>
-                <td><input type="checkbox" style="width:auto;"></td>
+                <td><input type="checkbox" id="allchk" style="width:auto;" th:onclick="|CheckAll()|"></td>
                 <td class="basket_img" style="width: 30%;">이미지</td>
                 <td>상품정보</td>
                 <td>판매가</td>
@@ -59,8 +59,8 @@
         </table>
 
         <div class="div_buy">
-            <button type="button" class="btn btn-secondary" style="margin-right: 1%;">전체상품주문</button>
-            <button type="button" class="btn btn-secondary" th:onclick="|goOrder()|">선택상품주문</button>
+            <button type="button" class="btn btn-secondary" style="margin-right: 1%;" th:onclick="|goOrderAll()|">전체상품주문</button>
+            <button type="button" class="btn btn-secondary" th:onclick="|goOrderSome()|">선택상품주문</button>
         </div>
     </form>
 
@@ -84,8 +84,17 @@
             document.getElementById("delivery").innerText = "+" + delivery + "원";
             document.getElementById("payment").innerText = "=" + payment + "원";
         });
+
+        function CheckAll() {
+            var checked = $('#allchk').is(':checked');
+            if(checked)
+                $('input[name="chk_order"]').prop('checked', true);
+            else
+                $('input[name="chk_order"]').prop('checked', false);
+        }
+
         //선택상품주문
-        function goOrder() {
+        function goOrderSome() {
             var chk = $('input[name="chk_order"]');
             if(chk.length == 0) {
                 return;
@@ -100,9 +109,14 @@
                 alert("선택된 상품이 없습니다.");
                 return;
             }
-            alert("주문 성공");
+            alert("서비스 준비 중입니다.");
         }
+
         //전체상품주문
+        function goOrderAll() {
+            $('input[name="chk_order"]').prop('checked', true);
+            alert("서비스 준비 중입니다.");
+        }
 
         // 수정
         function replaceCart(id) {

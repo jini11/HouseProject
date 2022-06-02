@@ -19,8 +19,4 @@ public class MyShopController {
         return "myshop/index";
     }
 
-    @GetMapping("/wish")
-    public String wish() {
-        return "myshop/wish";
-    }
 }

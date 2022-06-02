@@ -31,6 +31,7 @@ public class UserService { // unit test?
 
     public User save(String userid, User user) {
         User current = userRepository.findByUserid(userid);
+
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         current.setPassword(encodedPassword);
         current.setUseradd1(user.getUseradd1());

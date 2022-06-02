@@ -39,7 +39,7 @@
                 </td>
 
                 <td>
-                    <a th:href="@{/myshop/order}">
+                    <a th:onclick="|ready()|" th:href="@{/myshop/index}">
                         <img th:src="@{/image/myshop/gift.png}" style="margin-bottom: 1%;">
                         <p class="info_menu_title">Order</p>
                         <p class="info_menu_sub">주문 내역 조회</p>
@@ -55,6 +55,11 @@
 
     <!-- jQuery, Popper.js, and Bootstrap JS -->
     <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function ready() {
+            alert("준비 중인 페이지입니다.");
+        }
+    </script>
 </body>
 
 </html>
