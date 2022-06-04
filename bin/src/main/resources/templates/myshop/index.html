@@ -1,0 +1,65 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('마이페이지')"></head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
+    </nav>
+
+    <h3 style="margin-top: 8rem; margin-left: 18%; font-weight:bold;">마이페이지</h3>
+
+    <div class="user_info">
+        <div class="user_info_img"><img th:src="@{/image/myshop/user.png}"></div>
+        <div style="float: left; padding-top: 6%;">
+            <p sec:authentication="name" style="font-size: 140%; font-weight: bold;">사용자</p>
+            <p style="padding-top: 2%;">&nbsp; 님은 현재 [새싹] 등급입니다.</p>
+        </div>
+    </div>
+    
+    <table class="info_menu">
+        <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/account/info}">
+                        <img th:src="@{/image/myshop/profile3.png}" style="margin-bottom: 1%;">
+                        <p class="info_menu_title">Profile</p>
+                        <p class="info_menu_sub">회원 정보 수정</p>
+                    </a>
+                    <p class="info_menu_content">고객님의 개인정보를 <br>관리하는 공간입니다.</p>
+                </td>
+
+                <td>
+                    <a th:href="@{/cart/basket}">
+                        <img th:src="@{/image/myshop/cart1.png}" style="margin-bottom: 1%;">
+                        <p class="info_menu_title">Cart</p>
+                        <p class="info_menu_sub">장바구니</p>
+                    </a>
+                    <p class="info_menu_content">장바구니에 추가하신 <br>상품의 목록을 보여드립니다.</p>
+                </td>
+
+                <td>
+                    <a th:onclick="|ready()|" th:href="@{/myshop/index}">
+                        <img th:src="@{/image/myshop/gift.png}" style="margin-bottom: 1%;">
+                        <p class="info_menu_title">Order</p>
+                        <p class="info_menu_sub">주문 내역 조회</p>
+                    </a>
+                    <p class="info_menu_content">고객님께서 주문하신 상품의 <br>주문내역을 확인할 수 있습니다.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function ready() {
+            alert("준비 중인 페이지입니다.");
+        }
+    </script>
+</body>
+
+</html>

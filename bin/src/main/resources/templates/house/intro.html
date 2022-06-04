@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('소개')">
+</head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('intro')">
+        
+    </nav>
+
+    <div th:replace="fragments/common :: fragment-mainimg"></div>
+
+    <div class="intro_main">
+        <p>" 오늘의집은 인테리어의 모든 과정을 도와줄 수 있는 원스톱 인테리어 플랫폼입니다.</p>
+        <p>&nbsp; 이를 통해 누구나 쉽고 재미있게 자신의 공간을 만들어가는 문화가 널리 퍼지기를 꿈꿉니다. "</p>
+    </div>
+
+    <div class="intro_table2">
+            <table>
+                <tr>
+                    <img th:src="@{/image/room/room1.webp}"> 
+                    <img th:src="@{/image/room/room2.webp}"> 
+                    <img th:src="@{/image/room/room3.webp}">
+                    <img th:src="@{/image/room/room4.webp}">  
+                    <img th:src="@{/image/room/room5.webp}"> 
+                    <img th:src="@{/image/room/room6.webp}" style="height: 16%; margin-right: -50%;"> 
+                </tr>
+            </table>
+    </div>
+
+
+    <div class="intro_exp">
+        <div class="exp_txt">
+            <p>오늘의집은 </p>
+            <p>인테리어의 모든 과정을</p>
+            <p>한 곳에서 해결할 수 있습니다.</p>
+        </div>
+    </div>
+
+    <div class="intro_table">
+        <table style="margin-left: 14%;">
+            <tr>
+                <td>
+                    <img th:src="@{/image/intro1.webp}">
+                    <p>인테리어 정보 한번에 모아보기</p>
+                </td>
+                <td>
+                    <img th:src="@{/image/intro2.webp}">
+                    <p>마음에 드는 인테리어 사진 속 제품 바로 구매하기</p>
+                </td>
+                <td>
+                    <img th:src="@{/image/intro3.webp}">
+                    <p>인테리어 시공 더 쉽게 하기</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"> </footer>
+</body>
+
+</html>

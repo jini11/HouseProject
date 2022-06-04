@@ -1,0 +1,163 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('House Project')"></head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
+    </nav>
+
+    <form class="form-signin basket_form" action="#" th:action="@{/cart/basket}" method="post" th:object="${order}">
+        <h3 style="font-weight:bold; margin-bottom:4rem;">결제하기</h3>
+        <table class="basket_info">
+            <thead>
+                <td><input type="checkbox" style="width:auto;"></td>
+                <td class="basket_img" style="width: 30%;">이미지</td>
+                <td>상품정보</td>
+                <td>판매가</td>
+                <td>수량</td>
+                <td>합계</td>
+            </thead>
+            <tbody>
+                <tr th:each="cart : ${carts}" class="cart_info_td">
+                    <!-- 가격 계산 -->
+                    <!--<td class="cart_info_td">
+                        <input type="hidden" class="price_input" value="${cart.product.saleprice}">
+                        <input type="hidden" class="count_input" value="${cart.count}">
+                    </td>-->
+
+                    <input type="hidden" th:value="${order.id}">
+                    <td><input type="checkbox" name="chk_order" style="width:auto;"></td>
+                    <td class="basket_img"><img th:src="@{${order.product.getImgPath()}}" style="width: 30%;"></td>
+                    <td><p th:text="${order.product.name}">상품정보</p> </td>
+                    <td><p th:text="${order.product.saleprice}">판매가</p></td>
+                    <td><p th:text="${order.ordercount}">개수</p></td>
+                    <td class="cart_price">
+                        <input type="hidden" th:value="${order.product.saleprice * order.ordercount}" class="price" id="price">
+                        <p th:text="${order.product.saleprice * order.ordercount}">합계</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form class="form-signin info_form" action="#" th:action="@{/account/info}" th:object="${order}" method="post" >
+            <h3 style="font-weight:bold; margin-bottom:4rem;">배송 정보 입력</h3>
+            <input type="hidden" th:field="*{id}">
+            <table class="userinfo_table">
+                <tr>
+                    <th>받으시는 분</th>
+                    <td><input type="text" class="form-control" id="ordername" th:field="*{ordername}">
+                        
+                </tr>
+                
+                <tr>
+                    <th>주소</th>
+                    <td class="address">
+                        <input type="text" id="useradd1" class="form-control" placeholder="우편번호" th:classappend="${#fields.hasErrors('useradd1')} ? 'is-invalid'" th:field="*{useradd1}"
+                            style="float: left; width: 10%; display:inline-block;">
+                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" style="width: 20%;">
+                        <input type="text" id="useradd2" class="form-control" placeholder="도로명주소" th:classappend="${#fields.hasErrors('useradd2')} ? 'is-invalid'" th:field="*{useradd2}">
+                        <span id="guide" style="color:#999;display:none"></span>
+                        <input type="text" id="sample4_detailAddress" class="form-control" placeholder="상세주소" th:classappend="${#fields.hasErrors('useradd3')} ? 'is-invalid'" th:field="*{useradd3}" style="float: left;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <!-- 금액 -->
+        <h3 style="font-weight:bold; margin-bottom:4rem;">결제 예정 금액</h3>
+        <table class="basket_info" style="margin: 5rem auto;">
+            <thead>
+                <td>총 상품금액</td>
+                <td>총 배송비</td>
+                <td>결제예정금액</td>
+            </thead>
+            <tbody class="pay">
+                <td id="totalprice" class="totalprice" style="margin-top: 3%;">35,700원</td>
+                <td id="delivery">+3,000원</td>
+                <td id="payment" style="color:blue;">=38,700원</td>
+            </tbody>
+        </table>
+
+        <div class="div_buy">
+            <button type="button" class="btn btn-secondary" th:onclick="|goOrder()|">결제하기</button>
+        </div>
+    </form>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        // 자동 총액 계산
+        $(document).ready(function() {
+            let total = 0;
+            let delivery = 2500;
+            $(".price").each(function(index) {
+                total += parseInt($(this).val());
+            })
+            document.getElementById("totalprice").innerText = total + "원";
+            if(total >= 50000)
+                delivery = 0;
+            let payment = total + delivery;
+            document.getElementById("delivery").innerText = "+" + delivery + "원";
+            document.getElementById("payment").innerText = "=" + payment + "원";
+        });
+        //선택상품주문
+        function goOrder() {
+            var chk = $('input[name="chk_order"]');
+            if(chk.length == 0) {
+                return;
+            }
+            var cnt = 0;
+            $.each(chk, function(idx, ch) {
+                if($(ch).is(":checked")) 
+                    cnt++;
+               
+            });
+            if(cnt == 0) {
+                alert("선택된 상품이 없습니다.");
+                return;
+            }
+            alert("주문 성공");
+        }
+        //전체상품주문
+
+        // 수정
+        function replaceCart(id) {
+            var count = document.getElementById("count").value;
+            $.ajax({
+                url: '/api/carts/' + id + '/' + count,
+                type: "PUT",
+                success: function(result) {
+                    alert('변경되었습니다.');
+                    window.location.href = '/cart/basket';
+                },
+                error : function() {
+                    alert("수정 오류");
+                }
+            })
+        }
+        // 삭제
+        function deleteCart(id) {
+            var check = confirm("선택한 상품을 삭제하겠습니까?");
+            if(check) {
+                $.ajax({
+                    url: '/api/carts/' + id,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log('result', result);
+                        alert('삭제되었습니다.');
+                        window.location.href = '/cart/basket';
+                    },
+                    error : function() {
+                        alert("삭제 오류");
+                    }
+                })
+            }
+        }
+    </script>
+</body>
+
+</html>

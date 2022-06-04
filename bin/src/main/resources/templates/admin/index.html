@@ -1,0 +1,60 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('House Project')"></head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
+    </nav>
+
+    <h3 style="margin-top: 8rem; margin-left: 18%; font-weight:bold;">마이페이지</h3>
+
+    <div class="user_info">
+        <div class="user_info_img"><img th:src="@{/image/myshop/user.png}"></div>
+        <div style="float: left; padding-top: 6%;">
+            <p sec:authentication="name" style="font-size: 140%; font-weight: bold;">사용자</p>
+            <p style="padding-top: 2%;">&nbsp; 관리자 님 안녕하세요</p>
+        </div>
+    </div>
+    
+    <table class="info_menu">
+        <tbody>
+            <tr>
+                <td>
+                    <a th:href="@{/product/register}">
+                        <img th:src="@{/image/myshop/box.png}">
+                        <p class="info_menu_title">Item Registration</p>
+                        <p class="info_menu_sub">상품 등록</p>
+                    </a>
+                    <p class="info_menu_content">고객님의 상품 정보를 <br>등록하는 공간입니다.</p>
+                </td>
+
+                <td>
+                    <a th:href="@{/product/manage}">
+                        <img th:src="@{/image/myshop/product.png}">
+                        <p class="info_menu_title">Item Management</p>
+                        <p class="info_menu_sub">상품 관리</p>
+                    </a>
+                    <p class="info_menu_content">고객님의 상품 정보를 <br>관리하는 공간입니다.</p>
+                </td>
+
+                <td>
+                    <a th:href="@{/account/admin_info}">
+                        <img th:src="@{/image/myshop/profile4.png}">
+                        <p class="info_menu_title">User Management</p>
+                        <p class="info_menu_sub">회원 관리</p>
+                    </a>
+                    <p class="info_menu_content">회원 정보를 관리하는 공간입니다.</p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"></footer>
+</body>
+
+</html>

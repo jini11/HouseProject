@@ -1,0 +1,83 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/common :: head('House Project')"></head>
+
+<body style="overflow-x: hidden;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
+    </nav>
+
+    <form class="form-signin info_form" action="#" th:action="@{/account/info}" th:object="${user}" method="post" >
+        <h3 style="font-weight:bold; margin-bottom:4rem;">회원 정보 관리</h3>
+        <table class="admin_info" style="width: 100%;">
+            <thead>
+                <td>아이디</td>
+                <td>이름</td>
+                <td>주소1</td>
+                <td>주소2</td>
+                <td>이메일</td>
+                <td>여부</td>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${users}">
+                    <td><p th:text="${user.userid}">아이디</p> </td>
+                    <td><p th:text="${user.username}">이름</p> </td>
+                    <td><p th:text="${user.useradd1}">주소1</p> </td>
+                    <td><p th:text="${user.useradd2}">주소2</p> </td>
+                    <td><p th:text="${user.email}">이메일</p> </td>
+                    <td><button type="button" class="btn btn-outline-danger" th:if="${!user.userid.equals('admin')}" th:data-p1="${user.id}" th:data-p2="${user.userid}" th:onclick="|deleteUser(this.getAttribute('data-p1'), this.getAttribute('data-p2'))|" style="margin-top: 0;">강제 탈퇴</button></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" th:classappend="${1 == users.pageable.pageNumber + 1} ? 'disabled'">
+                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${users.pageable.pageNumber - 1})}"
+                        tabindex="-1" aria-disabled="true"><</a>
+                </li>
+                <li class="page-item" th:classappend="${i == users.pageable.pageNumber + 1} ? 'disabled'"
+                    th:each="i: ${#numbers.sequence(startPage, endPage)}">
+                    <a class="page-link" href="#" th:href="@{/account/admin_info(page=${i - 1})}" th:text="${i}">1</a>
+                </li>
+                <li class="page-item"
+                    th:classappend="${users.totalPages == users.pageable.pageNumber + 1} ? 'disabled'">
+                    <a class="page-link" href="#"
+                        th:href="@{/account/admin_info(page=${users.pageable.pageNumber + 1})}">></a>
+                </li>
+            </ul>
+        </nav>
+    </form>
+
+    <!-- 푸터 설명 -->
+    <div th:replace="fragments/common :: fragment-bottom"></div>
+
+    <!-- jQuery, Popper.js, and Bootstrap JS -->
+    <footer th:replace="fragments/common :: footer"></footer>
+    <script>
+        function deleteUser(id, userid) {
+            var check = confirm("정말 탈퇴시키겠습니까?");
+            if(check) {
+                $.ajax({
+                    url: '/api/deletes/' + userid,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log("result", result);
+                    }
+                });
+                $.ajax({
+                    url: '/api/users/' + id,
+                    type: 'DELETE',
+                    success: function(result) {
+                        console.log('result', result);
+                        alert('탈퇴시켰습니다.');
+                        window.location.href = '/account/admin_info';
+                    }
+                });
+            } else
+                alert("취소되었습니다.");
+        }
+    </script>
+</body>
+
+</html>

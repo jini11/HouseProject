@@ -1,0 +1,248 @@
+@charset "UTF-8";
+@font-face {
+    font-family: "noto";
+    src: url("../font/NotoSansKR-Medium.woff") format("font-woff"),
+        url("../font/NotoSansKR-Medium.woff2") format("font-woff2");
+    font-weight: bold;
+    font-style: normal;
+  }
+
+/*___________________________________________________________________
+   [ 메인화면 ]
+___________________________________________________________________*/
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: #fcf8f3;
+}
+
+/*글씨 통일*/
+a {
+    text-decoration: none;
+    font-family: 'noto';
+    color: black;
+}
+
+p {
+    text-decoration: none;
+    font-family: 'noto';
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+td {
+    padding: 0;
+    margin: 0;
+    border-spacing: 0;
+    border-style: 0;
+}
+
+.logo {
+    width: 80%; /* 11rem */
+    margin-left: 40%;
+    margin-right: 15%;
+    float: left;
+  }
+  
+  .nav_ul a {
+    margin-left: 4rem;
+    width: 7rem; /* 8rem */
+    float: left;
+    color: black;
+    font-size: 130%; /* 1.4rem */
+    font-weight: bold;
+  }
+  
+  .nav_btn {
+    margin-right: 1rem;
+    font-weight: bold;
+  }
+
+/* 테이블 영역 */
+
+.product {
+    width: 66%;
+    margin: 15rem auto;
+}
+
+.product table {
+    width: 100%;
+}
+
+.market {
+    font-size: 130%;
+    color: rgb(105, 104, 104);
+}
+
+.pd_name {
+    font-size: 200%; 
+    color: black;
+}
+
+.discount {
+    color: blue; 
+    font-size: 150%;
+    float: left;
+}
+
+.percent {
+    font-size: 150%;
+    color: blue;
+    float:left;
+}
+
+.origin {
+    margin-left: 3%;
+    font-size: 150%;
+    color: lightgray;
+    float: left;
+    text-decoration: line-through;
+}
+
+.saleprice {
+    color: black; 
+    font-size: 200%;
+    float: left;
+}
+
+.won {
+    color: black; 
+    font-size: 200%;
+}
+
+.benefit {
+    color:gray; 
+    float: left; 
+    margin-right: 2%;
+}
+
+.deli_info {
+    border-bottom: 1px solid rgb(82, 80, 80);
+}
+
+.deli {
+    color: gray; 
+    float: left; 
+    margin-right: 2%;
+}
+
+.normal {
+    padding-left: 6%; 
+    margin-top: 1%;
+}
+
+.etc_deli {
+    color:gray; 
+    font-weight: lighter; 
+    padding-left: 8%; 
+    font-size: 80%; 
+    margin-bottom: 4%;
+}
+
+.count {
+    font-size: 100%; 
+    height: 70px;
+}
+
+.num {
+    text-align: right; 
+    padding-right: 2%;
+}
+
+.total_price {
+    text-align: right; 
+    padding-right: 2%; 
+    font-size: 160%; 
+    font-weight: bold;
+}
+
+.pd_area {
+    vertical-align: top;
+}
+
+.pd_area p {
+    margin-bottom: 2%;
+}
+
+.pd_area_img {
+    width: 10%;
+}
+
+.pd_area_img img {
+    border-radius: 1%;
+    width: 550px;
+}
+
+.empty {
+    width: 5%;
+}
+
+.pd_name {
+    font-size: 200%; 
+    color: black;
+}
+
+
+.product select {
+    width: 30%;
+    height: 30px;
+    border: 1px solid rgb(204, 204, 204);
+}
+
+.product option {
+    font-size: 120%;
+}
+
+/* 버튼 영역 */
+.buy_btn {
+	margin-top: 10%;
+}
+
+#cart_btn {
+    background-color: white;
+    color: #e49517;
+    border: 2px solid #e49517;
+    font-weight: bold;
+    font-family: 'noto';
+}
+
+.buy_btn button{
+	width: 97%; 
+	height: 50px;
+	background: #e49517;
+	color: rgb(255, 255, 255);
+	font-size: 100%;
+	font-family: 'noto';
+	font-weight: bold;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* footer */
+.text-secondary {
+    background-color: #faf1e3;
+  }
+  
+  .text-secondary p {
+    margin-left: 6rem;
+    margin-bottom: 0;
+    color: black;
+    font-family: 'noto';
+  }
+  
+  .etc_div {
+    margin-left: 6rem;
+  }
+  
+  .etc_div a {
+    margin-right: 2rem;
+  }

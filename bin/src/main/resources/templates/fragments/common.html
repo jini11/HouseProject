@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.thymeleaf.org/extras/spring-security">
+    <head th:fragment="head(title)">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/image/logo.PNG}">
+    <title th:text="${title}">House Project</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top border-bottom" th:fragment="menu(menu)">
+            <a href="#" th:href="@{/}" class="navbar-brand"><img th:src="@{/image/homelog.jpg}" class="logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault" style="margin-left: 5%;">
+                <ul class="navbar-nav mr-auto nav_ul">
+                    <li class="nav-item" th:classappend="${menu} == 'intro'? 'active'">
+                        <a class="nav-link" href="#" th:href="@{/house/intro}">소개 <span class="sr-only" th:if="${menu} == 'intro'">(current)</span></a>
+                    </li>
+                    <!-- <li class="nav-item" th:classappend="${menu} == 'visit'? 'active'">
+                        <a class="nav-link" href="#" th:href="@{/house/visit}">집들이 <span class="sr-only" th:if="${menu} == 'visit'">(current)</span></a>
+                    </li> -->
+                    <li class="nav-item" th:classappend="${menu} == 'store'? 'active'">
+                        <a class="nav-link" href="#" th:href="@{/product/store}">스토어 <span class="sr-only" th:if="${menu} == 'store'">(current)</span></a>
+                    </li>
+                    <li class="nav-item" th:classappend="${menu} == 'board'? 'active'">
+                        <a class="nav-link" href="#" th:href="@{/board/list}">공지사항 <span class="sr-only" th:if="${menu} == 'board'">(current)</span></a>
+                    </li>
+                </ul>
+                
+                <a class="btn btn-light btn-lg my-2 mr-2 my-sm-0 nav_btn" th:href="@{/account/login}"
+                    sec:authorize="!isAuthenticated()" href="../account/login.html">로그인</a>
+                <a class="btn btn-light btn-lg my-2 my-sm-0 nav_btn" th:href="@{/account/register}"
+                    sec:authorize="!isAuthenticated()">회원가입</a>
+
+                <form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="POST" sec:authorize="isAuthenticated()">
+                    <span sec:authentication="name" style="font-weight: bold;">사용자</span>
+                    <span>&nbsp; 님 &nbsp;&nbsp;&nbsp;</span>
+                    <span sec:authorize="hasRole('ROLE_USER')">
+                        <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/myshop/index}">마이페이지</a>
+                    </span>
+                    <span sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="btn btn-secondary my-2 mr-2 my-sm-0" type="button" th:href="@{/admin/index}">마이페이지</a>
+                    </span>
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit" th:href="@{/}">로그아웃</button>
+                </form>
+            </div>
+        </nav>     
+
+        <!-- 메인 이미지 화면 -->
+        <div class="main_img" th:fragment="fragment-mainimg">
+            <div>
+                <img th:src="@{/image/main.PNG}" class="img-fluid">
+            </div>
+        </div>
+
+        <!-- 하단 영역 -->
+        <div class="text-secondary px-4 py-5 text-left" th:fragment="fragment-bottom">
+            <p style="font-size: 12px; margin-top: 30px;">고객센터 ></p>
+                <p style="font-size: 30px; font-weight:bold;">1234-1234</p>
+                <p>
+                    평일 10:00~16:00(주말 & 공휴일 제외)
+                </p>
+                <div class="etc_div">
+                    <a href="#">브랜드 스토리</a>
+                    <a href="#">회사소개</a>
+                    <a href="#">공지사항</a>
+                    <a href="#">고객센터</a>
+                    <a href="#">제휴/광고 문의</a>
+                    <a href="#">입점신청 문의</a>
+                </div>
+                <br>
+                <p style="margin-top: 10px;">
+                    상호명: (주)버킷플레이스 
+                </p>
+                <p>
+                    제작자: 이지은
+                </p>
+                <p>
+                    소속: 공주대학교 컴퓨터공학부
+                </p>
+        </div>
+
+        <!-- jQuery, Popper.js, and Bootstrap JS -->
+        <footer th:fragment="footer">
+            <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous"></script> -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" 
+                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" 
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+                crossorigin="anonymous"></script>
+        </footer>
+    </body>
+
+</html>

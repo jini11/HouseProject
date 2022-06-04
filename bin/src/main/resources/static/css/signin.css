@@ -1,0 +1,106 @@
+@charset "UTF-8";
+@font-face {
+  font-family: "noto";
+  src: url("../font/NotoSansKR-Medium.woff") format("font-woff"),
+      url("../font/NotoSansKR-Medium.woff2") format("font-woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #faf1e3;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 28rem;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin h1 {
+    color: rgb(95, 95, 95);
+}
+
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+
+.form-signin input {
+  padding: 20px 10px 10px;
+	background-color: transparent;
+	border: none;
+	border-bottom: 1px solid rgb(95, 95, 95);
+	font-size: 100%; 
+	color: rgb(95, 95, 95);
+	outline: none;
+}
+
+.form-signin input::placeholder {
+    font-family: 'noto';
+}
+
+.form-signin input[type="text"] {
+  margin-top: 2rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 3rem;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-radius: 0;
+}
+
+#userid {
+  width: 70%;
+  float:left;
+}
+
+
+.btn {
+  width: 100%; 
+	height: 50px;
+	background: #e49517;
+	color: rgb(255, 255, 255);
+	font-size: 100%;
+	font-family: 'noto';
+	font-weight: bold;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+/* 홈/회원가입 */
+.caption {
+	margin-top: 8%;
+	text-align: center;
+	font-weight: bold;
+}
+
+.caption a{
+	font-size: 100%; 
+	color: rgb(95, 95, 95);
+	text-decoration: none;
+}
