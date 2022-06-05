@@ -1,6 +1,7 @@
 package com.mycom.HouseProject.config;
 
 
+import org.apache.catalina.webresources.TomcatURLStreamHandlerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .alwaysRemember(false)
                     .tokenValiditySeconds(43200)
                     .rememberMeParameter("remember-me");
-
+        TomcatURLStreamHandlerFactory.disable();
     }
 
     @Autowired

@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.mycom</groupId>
-	<artifactId>HouseProject</artifactId>
+	<artifactId>ROOT</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ROOT</name>
 	<description>ROOT</description>
@@ -41,7 +41,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+			<version>2.5.0</version>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>5.5.0</version>
+		</dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -78,6 +84,17 @@
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			<scope>provided</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework</groupId>-->
+<!--			<artifactId>spring-context</artifactId>-->
+<!--			<type>jar</type>-->
+<!--			<scope>compile</scope>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.23.1-GA</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -88,7 +105,7 @@
 				<configuration>
 					<excludes>
 						<exclude>
-							<groupId>org.projectlombok</groupId>
+							<groupId>org.project.lombok</groupId>
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
@@ -100,14 +117,14 @@
 				<configuration>
 					<nonFilteredFileExtensions>
 						<!-- fonts -->
-						<nonFilteredFileExtension>eot</nonFilteredFileExtension>
-						<nonFilteredFileExtension>svg</nonFilteredFileExtension>
-						<nonFilteredFileExtension>svg</nonFilteredFileExtension>
-						<nonFilteredFileExtension>ttf</nonFilteredFileExtension>
-						<nonFilteredFileExtension>woff</nonFilteredFileExtension>
-						<nonFilteredFileExtension>woff2</nonFilteredFileExtension>
-						<nonFilteredFileExtension>p12</nonFilteredFileExtension>
-						<nonFilteredFileExtension>ipa</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.eot</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.svg</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.svg</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.ttf</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.woff</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.woff2</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.p12</nonFilteredFileExtension>
+						<nonFilteredFileExtension>*.ipa</nonFilteredFileExtension>
 					</nonFilteredFileExtensions>
 				</configuration>
 			</plugin>

@@ -25,7 +25,7 @@
                     <td><p th:text="${user.useradd1}">주소1</p> </td>
                     <td><p th:text="${user.useradd2}">주소2</p> </td>
                     <td><p th:text="${user.email}">이메일</p> </td>
-                    <td><button type="button" class="btn btn-outline-danger" th:if="${!user.userid.equals('admin')}" th:data-p1="${user.id}" th:data-p2="${user.userid}" th:onclick="|deleteUser(this.getAttribute('data-p1'), this.getAttribute('data-p2'))|" style="margin-top: 0;">강제 탈퇴</button></td>
+                    <td><button type="button" class="btn btn-outline-danger" th:if="${!user.userid.equals('admin1')}" th:data-p1="${user.id}" th:data-p2="${user.userid}" th:onclick="|deleteUser(this.getAttribute('data-p1'), this.getAttribute('data-p2'))|" style="margin-top: 0;">강제 탈퇴</button></td>
                 </tr>
             </tbody>
         </table>

@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head> 
     <!-- Required meta tags -->
@@ -69,7 +69,7 @@
                     <td></td>
                     <td></td>
                     <td><button type="button" id="cart_btn" th:onclick="|addCart(*{id})|" sec:authorize="hasRole('ROLE_USER')">장바구니</button>
-                        <button type="button" id="cart_btn" th:onclick="|login()|" sec:authorize="isAnonymous()">장바구니</button></td>
+                        <button type="button" id="cart_btn2" th:onclick="|login()|" sec:authorize="isAnonymous()">장바구니</button></td>
                     <td>
                         <button type="button" sec:authorize="hasRole('ROLE_USER')" th:onclick="|addOrder()|">바로구매</button>
                         <!-- <button type="button" sec:authorize="hasRole('ROLE_USER')" th:onclick="|addOrder(*{id})|">바로구매</button> -->

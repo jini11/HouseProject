@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="fragments/common :: head('공지사항')"></head>
 
@@ -13,11 +13,11 @@
         <form action="#" th:action="@{/board/form}" th:object="${board}" method="post">
             <div sec:authorize="hasRole('ROLE_USER')">
                 <label for="title">제목</label>
-                <input type="text" class="form-control mb-4" id="title" th:field="*{title}" disabled>
+                <input type="text" class="form-control mb-4" th:field="*{title}" disabled>
                 
             
                 <label for="content">내용</label>
-                <textarea class="form-control" id="content" rows="10" th:field="*{content}" disabled></textarea>
+                <textarea class="form-control" rows="10" th:field="*{content}" disabled></textarea>
             </div>
 
             <div sec:authorize="hasRole('ROLE_ADMIN')">
