@@ -25,14 +25,15 @@ public class ProductService {
         String oriImg = imgFile.getOriginalFilename();
         String imgName = "";
         //String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
-        String path = System.getProperty("user.home") + "/image/product/";
+        //String path = System.getProperty("user.home") + "/image/product/";
+        String path = System.getProperty("user.home") + "/tomcat/webapps/upload/";
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + oriImg;
         imgName = fileName;
         File saveFile = new File(path, imgName); // 새로운 이미지 업로드
         imgFile.transferTo(saveFile);
         product.setImgName(imgName);
-        product.setImgPath("http://jiniswstest.cf/image/product/" + imgName);
+        product.setImgPath("/upload/" + imgName);
 
         // saleprice
         if(product.getDiscount() != 0) {
@@ -81,8 +82,8 @@ public class ProductService {
     public void deleteImg(@PathVariable Long id) {
         Product current = productRepository.findByid(id);
 
-        String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
-        //String path = System.getProperty("user.dir") + "/WEB-INF/classes/com/static/image/product/";
+        //String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
+        String path = System.getProperty("user.home") + "/tomcat/webapps/upload/";
         File lastFile = new File(path, current.getImgName()); // 기존 이미지
         if(lastFile.exists()) // 기존 이미지가 있다면 삭제
             lastFile.delete();

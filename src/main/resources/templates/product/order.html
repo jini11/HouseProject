@@ -76,6 +76,9 @@
                         <button type="submit" th:onclick="|login()|" sec:authorize="isAnonymous()">바로구매</button></td>
                 </tr>
             </table>
+            <div class="productDes" th:if="${!product.description.equals('')}">
+                <p th:text="${product.description}">설명</p>
+            </div>
         </form>
     </div>
 

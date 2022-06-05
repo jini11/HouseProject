@@ -227,6 +227,20 @@ td {
 	cursor: pointer;
 }
 
+/* 제품 상세 설명 */
+.productDes {
+    min-height: 5rem;
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+}
+
+.productDes p {
+    text-align: center;
+    font-family: 'noto';
+    font-weight: bold;
+    font-size: 120%;
+}
+
 /* footer */
 .text-secondary {
     background-color: #faf1e3;

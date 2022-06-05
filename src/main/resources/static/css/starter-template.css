@@ -171,16 +171,18 @@ p {
 
 /* 집들이 영역 */
 .home_table {
-  margin-left: 12rem;
-  margin-top: 1rem;
-  margin-bottom: 10rem;
+  margin: 0 auto 10rem auto;
   width: 80%;
   height: 30%;
 }
 
+.home tr {
+    border: none;
+}
+
 .home td {
   width: 15%;
-  height: 16%;
+  height: 20rem;
   text-align: center;
 }
 
@@ -190,7 +192,7 @@ p {
   overflow: hidden;
   border-spacing: 0;
   border-radius: 2%;
-  width: 90%;
+  width: 95%;
   height: 250px;
   margin-bottom: 1rem;
 }
@@ -200,6 +202,8 @@ p {
   color: rgb(80, 79, 79);
   font-weight: bold;
   margin-bottom: 1rem;
+  width: 90%;
+  margin: auto;
 }
 
 .home_name {
@@ -363,9 +367,9 @@ p {
 
 /* 마이페이지 메인 */
 .user_info {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
-  margin-left: 18%;
+  /*margin-top: 4rem;
+  margin-bottom: 4rem; */
+  margin: 4rem auto 4rem 15%;
   border: 1px solid black;
   width: 70%;
   float: left;
@@ -390,8 +394,9 @@ p {
   height: 20rem;
   border: 1px solid gray;
   text-align: center;
-  margin-left: 18%;
-  margin-bottom: 10rem;
+  /*margin-left: 18%;
+  margin-bottom: 10rem;*/
+  margin: 0 auto 10rem;
 }
 
 .info_menu td {

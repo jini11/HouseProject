@@ -35,9 +35,9 @@
     <!-- 상품 영역 끝 -->
 
     <!-- 인기사진 -->
-    <div class="main_room">
-        <p class="stitle" style="margin-top: 5rem;">오늘의 인기사진</p>
-        <br>
+    <p class="stitle" style="text-align:center; margin: 5rem auto 5rem auto;">오늘의 인기사진</p>
+    <br>
+    <!--<div class="main_room">
         <div class="main_room_list" >
             <div>
                 <a href="#"><img src="image/best1.PNG" style="width: 54rem; height: 26rem"></a>
@@ -58,7 +58,64 @@
                 <a href="#"><img src="image/best4.webp" style="width: 26rem; height: 26rem; position: relative; top: -52rem; left: 2rem;"></a>
             </div>
         </div>
+    </div>-->
+
+    <!-- 집들이 시작-->
+    <div class="home_table">
+        <table class="home">
+            <tr>
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home1.webp}">
+                        <P>식품과 소품으로 가득 채운, 맥시멀 홈스타일링</P>
+                        <div class="home_name">L.s-jung</div>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home2.webp}">
+                        <P>블랙 콘셉트로 시크하게 바뀐 30년 된 구축아파트</P>
+                        <div class="home_name">202_cafe</div>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home3.webp}">
+                        <P>컬러 포인트가 있는, 알록달록한 10평 공간</P>
+                        <div class="home_name">injxe</div>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home4.webp}">
+                        <P>테라스 정원까지 품은, 아파트 플랜테리어</P>
+                        <div class="home_name">몽찌홈</div>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home5.webp}">
+                        <P>여백은 조명과 가구로, 무몰딩으로 바뀐 리모델링</P>
+                        <div class="home_name">toomin</div>
+                    </a>
+                </td>
+
+                <td>
+                    <a href="#">
+                        <img th:src="@{/image/home/home6.webp}">
+                        <P>반려동물과 함께, 조명과 햇살로 채운 신혼집</P>
+                        <div class="home_name">navy3978</div>
+                    </a>
+                </td>
+            </tr>
+        </table>
     </div>
+    <!-- 집들이 끝-->
 
     <!-- 푸터 설명 -->
     <div th:replace="fragments/common :: fragment-bottom"></div>

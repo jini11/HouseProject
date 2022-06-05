@@ -108,10 +108,10 @@ public class ProductController {
 //            else if(bindingResult.hasFieldErrors("imgPath"))
 //                return "redirect:/product/manage";
         } else { // 등록
-            if(!imgFile.isEmpty()) {
-                return "redirect:/product/manage";
-            }
-            else if(bindingResult.hasErrors())
+//            if(!imgFile.isEmpty()) {
+//                return "redirect:/product/manage";
+//            }
+            if(bindingResult.hasErrors() && imgFile.isEmpty())
                 return "product/register";
         }
 

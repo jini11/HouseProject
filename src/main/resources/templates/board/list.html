@@ -23,7 +23,7 @@
         </form>
         <table class="table table-hover" style="width: 70%; margin: 2% auto;" >
             <tbody>
-                <tr style="border: none;" th:each="board : ${boards}">
+                <tr style="border: none;" th:each="board, i : ${boards}">
                     <td class="notice_td">
                         <a th:href="@{/board/form(id=${board.id})}">
                             <p th:text="${board.title}" style="font-size: 110%;">iOS 12.x 버전 업데이터 지원 중단 안내</p>&nbsp;&nbsp;&nbsp;
