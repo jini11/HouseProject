@@ -1,6 +1,5 @@
 package com.mycom.HouseProject.controller;
 
-import com.mycom.HouseProject.model.Board;
 import com.mycom.HouseProject.model.User;
 import com.mycom.HouseProject.repository.UserRepository;
 import com.mycom.HouseProject.service.UserService;
@@ -9,18 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/account")

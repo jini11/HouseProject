@@ -18,7 +18,7 @@ public class BoardService {
     @Autowired
     private UserRepository userRepository;
 
-    public Board save(String userid, Board board) {
+    public Board save(String userid, Board board) { // 수정
         User user = userRepository.findByUserid(userid);
         board.setUser(user);
         LocalDate date = LocalDate.now();

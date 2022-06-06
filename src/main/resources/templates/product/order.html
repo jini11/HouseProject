@@ -63,7 +63,7 @@
                 <tr style="height: 70px">
                     <td></td>
                     <td style="font-size: 100%;">주문금액</td>
-                    <td class="total_price" id="total_price" th:text="${product.price} +'원'">1,370,000원</td>
+                    <td class="total_price" id="total_price" th:text="${product.saleprice} +'원'">1,370,000원</td>
                 </tr>
                 <tr class="buy_btn">
                     <td></td>
@@ -98,15 +98,19 @@
         function addCart(pid) {
             var count = document.getElementById("count").value;
             $.ajax({
-                url: '/cart/addCart/' + pid + '/' + count,
-                type : "POST",
-                success : function() {
+                url: '/api/addCart',
+                type : "PUT",
+                data: {
+                    pid : pid,
+                    count : count
+                },
+                success : function(result) {
                     alert("장바구니에 담겼습니다.");
                 },
                 error : function() {
-                    alert("카트 담기 실패");
+                   alert("카트 담기 실패");
                 }
-            });
+            })
         }
 
         /*function addOrder(pid) {

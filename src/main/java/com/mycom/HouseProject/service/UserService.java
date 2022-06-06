@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService { // unit test?
+public class UserService {
 
     @Autowired
     private UserRepository userRepository;
@@ -16,7 +16,7 @@ public class UserService { // unit test?
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public User save(User user) {
+    public User save(User user) { // 저장
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         user.setEnabled(true);
@@ -29,7 +29,7 @@ public class UserService { // unit test?
         return userRepository.save(user);
     }
 
-    public User save(String userid, User user) {
+    public User save(String userid, User user) { // 수정
         User current = userRepository.findByUserid(userid);
 
         String encodedPassword = passwordEncoder.encode(user.getPassword());

@@ -7,7 +7,7 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top" th:replace="fragments/common :: menu('mypage')">
     </nav>
 
-    <form class="form-signin basket_form" action="#" th:action="@{/cart/basket}" method="post">
+    <div class="form-signin basket_form">
         <h3 style="font-weight:bold; margin-bottom:4rem;">장바구니</h3>
         <table class="basket_info">
             <thead>
@@ -21,26 +21,23 @@
             </thead>
             <tbody>
                 <tr th:each="cart : ${carts}" class="cart_info_td">
-                    <!-- 가격 계산 -->
-                    <!--<td class="cart_info_td">
-                        <input type="hidden" class="price_input" value="${cart.product.saleprice}">
-                        <input type="hidden" class="count_input" value="${cart.count}">
-                    </td>-->
-
-                    <input type="hidden" th:value="${cart.id}">
-                    <td><input type="checkbox" name="chk_order" style="width:auto;"></td>
-                    <td class="basket_img"><img th:src="@{${cart.product.getImgPath()}}" style="width: 30%;"></td>
-                    <td><p th:text="${cart.product.name}">상품정보</p> </td>
-                    <td><p th:text="${cart.product.saleprice}">판매가</p></td>
-                    <td>
-                        <input type="number" min="1" th:max="${cart.product.stock}" th:value="${cart.count}" id="count" style="height: 40px;"><br>
-                        <a type="button" class="btn btn-outline-info" style="margin-top: 0.1rem; width: 4.5rem;" th:onclick="|replaceCart(id=${cart.id})|">변경</a>
-                    </td>
-                    <td class="cart_price">
-                        <input type="hidden" th:value="${cart.product.saleprice * cart.count}" class="price" id="price">
-                        <p th:text="${cart.product.saleprice * cart.count}">합계</p>
-                    </td>
-                    <td><button type="button" class="btn btn-outline-danger" style="margin-top: 0;" th:onclick="|deleteCart(id=${cart.id})|">삭제</button></td>
+                    <form method="post" th:action="@{/cart/replace}" th:object="${cart}">
+                        <input type="hidden" id="id" name="id" th:value="${cart.id}">
+                        <td><input type="checkbox" name="chk_order" style="width:auto;"></td>
+                        <td class="basket_img"><img th:src="@{${cart.product.getImgPath()}}" style="width: 30%;"></td>
+                        <td><p th:text="${cart.product.name}">상품정보</p> </td>
+                        <td><p th:text="${cart.product.saleprice}">판매가</p></td>
+                        <td>
+                            <input type="number" min="1" th:max="${cart.product.stock}" th:value="${cart.count}" id="count" name="count" style="height: 40px;" ><br>
+                            <button type="submit" class="btn btn-outline-info" style="margin-top: 0.1rem; width: 4.5rem;" th:onclick="|updateCart()|">변경</a>
+                        </td>
+                    </form>
+                        <td class="cart_price">
+                            <input type="hidden" th:value="${cart.product.saleprice * cart.count}" class="price" id="price">
+                            <p th:text="${cart.product.saleprice * cart.count}">합계</p>
+                        </td>
+                        <td><button type="button" class="btn btn-outline-danger" style="margin-top: 0;" th:onclick="|deleteCart(id=${cart.id})|">삭제</button></td>
+                    
                 </tr>
             </tbody>
         </table>
@@ -62,7 +59,7 @@
             <button type="button" class="btn btn-secondary" style="margin-right: 1%;" th:onclick="|goOrderAll()|">전체상품주문</button>
             <button type="button" class="btn btn-secondary" th:onclick="|goOrderSome()|">선택상품주문</button>
         </div>
-    </form>
+    </div>
 
     <!-- 푸터 설명 -->
     <div th:replace="fragments/common :: fragment-bottom"></div>
@@ -117,22 +114,11 @@
             $('input[name="chk_order"]').prop('checked', true);
             alert("서비스 준비 중입니다.");
         }
-
         // 수정
-        function replaceCart(id) {
-            var count = document.getElementById("count").value;
-            $.ajax({
-                url: '/api/carts/' + id + '/' + count,
-                type: "PUT",
-                success: function(result) {
-                    alert('변경되었습니다.');
-                    window.location.href = '/cart/basket';
-                },
-                error : function() {
-                    alert("수정 오류");
-                }
-            })
+        function updateCart() {
+            alert("수정되었습니다.");
         }
+
         // 삭제
         function deleteCart(id) {
             var check = confirm("선택한 상품을 삭제하겠습니까?");

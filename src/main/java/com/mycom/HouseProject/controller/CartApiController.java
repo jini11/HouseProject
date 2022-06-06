@@ -1,17 +1,16 @@
 package com.mycom.HouseProject.controller;
 
-
-import com.mycom.HouseProject.model.Board;
 import com.mycom.HouseProject.model.Cart;
-import com.mycom.HouseProject.model.User;
+import com.mycom.HouseProject.model.Product;
 import com.mycom.HouseProject.repository.CartRepository;
+import com.mycom.HouseProject.repository.ProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
 
+import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -21,6 +20,9 @@ class CartApiController {
 
     @Autowired
     private CartRepository repository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @GetMapping("/carts")
     List<Cart> all() {
@@ -47,9 +49,12 @@ class CartApiController {
         repository.deleteByUserid(userid);
     }
 
-    @PutMapping("/carts/{id}/{count}")
-    Cart replaceCart(@PathVariable Long id, @PathVariable Long count) {
-        Cart cart = repository.findByid(id);
+    @PutMapping("/addCart")
+    Cart addCart(@Valid Cart cart, Authentication authentication, @RequestParam("pid") Long pid, @RequestParam("count") Long count) throws IOException {
+        String userid = authentication.getName();
+        Product product = productRepository.findByid(pid);
+        cart.setUserid(userid);
+        cart.setProduct(product);
         cart.setCount(count);
         return repository.save(cart);
     }

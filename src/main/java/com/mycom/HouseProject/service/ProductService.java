@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
 import java.io.File;
 import java.util.UUID;
 
@@ -16,7 +18,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public Product save(Product product, MultipartFile imgFile) throws Exception{
+    public Product save(Product product, MultipartFile imgFile) throws Exception{ //저장
         // discount
         if(product.getDiscount() == null)
             product.setDiscount(0L);
@@ -24,8 +26,6 @@ public class ProductService {
         // 이미지 업로드
         String oriImg = imgFile.getOriginalFilename();
         String imgName = "";
-        //String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
-        //String path = System.getProperty("user.home") + "/image/product/";
         String path = System.getProperty("user.home") + "/tomcat/webapps/upload/";
         UUID uuid = UUID.randomUUID();
         String fileName = uuid + "_" + oriImg;
@@ -49,7 +49,7 @@ public class ProductService {
         return productRepository.save(product);
     }
 
-    public Product save(Long id, Product product) {
+    public Product save(Long id, Product product) { // 수정
         Product current = productRepository.findByid(id);
 
         current.setName(product.getName());
@@ -79,17 +79,16 @@ public class ProductService {
         return productRepository.save(current);
     }
 
-    public void deleteImg(@PathVariable Long id) {
+    public void deleteImg(@PathVariable Long id) { // 기존 이미지 삭제
         Product current = productRepository.findByid(id);
 
-        //String path = System.getProperty("user.dir") + "/src/main/resources/static/image/product/";
         String path = System.getProperty("user.home") + "/tomcat/webapps/upload/";
         File lastFile = new File(path, current.getImgName()); // 기존 이미지
         if(lastFile.exists()) // 기존 이미지가 있다면 삭제
             lastFile.delete();
     }
 
-    public void deleteProduct(@PathVariable Long id) {
+    public void deleteProduct(@PathVariable Long id) { // 상품 삭제
         productRepository.deleteById(id);
     }
 }

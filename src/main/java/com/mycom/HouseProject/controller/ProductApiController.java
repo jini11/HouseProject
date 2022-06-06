@@ -1,14 +1,10 @@
 package com.mycom.HouseProject.controller;
 
-import com.mycom.HouseProject.model.Board;
 import com.mycom.HouseProject.model.Product;
-import com.mycom.HouseProject.model.User;
 import com.mycom.HouseProject.repository.ProductRepository;
-import com.mycom.HouseProject.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.util.StringUtils;
 
 import java.util.List;
 

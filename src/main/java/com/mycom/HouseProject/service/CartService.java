@@ -23,12 +23,9 @@ public class CartService {
     @Autowired
     private UserRepository userRepository;
 
-    public Cart save(String userid, Long pid, Cart cart) {
-        //User user = userRepository.findByUserid(userid);
-        Product product = productRepository.findByid(pid);
-        cart.setUserid(userid);
-        cart.setProduct(product);
-        cart.setCount(cart.getCount());
-        return cartRepository.save(cart);
+    public Cart save(Long id, Cart cart) { // 수정
+        Cart current = cartRepository.findByid(id);
+        current.setCount(cart.getCount());
+        return cartRepository.save(current);
     }
 }

@@ -5,14 +5,11 @@ import com.mycom.HouseProject.repository.CartRepository;
 import com.mycom.HouseProject.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -33,10 +30,9 @@ public class CartController {
         return "cart/basket";
     }
 
-    @PostMapping("/addCart/{pid}/{count}")
-    public String addCart(@Valid Cart cart, Authentication authentication, @PathVariable Long pid, @PathVariable Long count) throws IOException {
-        String userid = authentication.getName();
-        cartService.save(userid, pid, cart);
-        return "redirect:/product/order";
+    @PostMapping("/replace")
+    public String replace(@Valid Cart cart, @RequestParam(required = false) Long id) {
+        cartService.save(id, cart);
+        return "redirect:/cart/basket";
     }
 }
