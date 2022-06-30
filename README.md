@@ -1,5 +1,7 @@
 # HouseProject_WebProject
-spring boot를 이용한 가구 구매 웹 사이트 구현  
+spring boot를 이용한 가구 구매 웹 사이트 구현
+
+
 ![image](https://user-images.githubusercontent.com/78905126/176617662-f2161474-3f9e-4eec-9681-820a44a688b1.png)
 
 ## Description
@@ -11,9 +13,13 @@ spring boot를 이용한 가구 구매 웹 사이트 구현
 #### 주요 기능  
 ![image](https://user-images.githubusercontent.com/78905126/176614171-24a1df17-2302-41b1-9637-a93cc35436ca.png)
 #### **호스팅 주소**: http://jinisws77.cafe24.com
-  
+
+
+
 ## Environment
 ![image](https://user-images.githubusercontent.com/78905126/176613796-a492251a-16b4-4fba-b3b1-9d55e27f3649.png)
+
+
 
 ## Results
 ### 1. 사용자 버전
@@ -50,6 +56,8 @@ spring boot를 이용한 가구 구매 웹 사이트 구현
   
   
   ![image](https://user-images.githubusercontent.com/78905126/176618491-9ca7d442-d145-4cf7-8e64-ed83d2985027.png)
+
+
 
 ## End..
 1. "구매" 기능 추가하기
